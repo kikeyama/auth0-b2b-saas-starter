@@ -1,0 +1,20 @@
+{
+  "home": {
+    "title": "Welcome to My Website",
+    "description": "Explore our content in multiple languages."
+  },
+  "IndexPage": {
+    "login": "Log in",
+    "logout": "Logout",
+    "joined": "Already joined?",
+    "app_name": "SaaStart",
+    "description_1": "SaaStart is a reference B2B SaaS application built using Next.js and Auth0.",
+    "description_2": "It features multi-tenancy support, user management and access controls, security policies, self-service Single Sign-On configuration and more out-of-the-box."
+  },
+  "SignUpForm": {
+    "title": "Try SaaStart for Free",
+    "description": "Enter your email address to sign up and create a new organization for you and your collaborators.",
+    "email": "Email",
+    "button": "Get Started"
+  }
+}

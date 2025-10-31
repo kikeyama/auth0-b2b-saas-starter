@@ -1,0 +1,20 @@
+{
+  "home": {
+    "title": "ようこそ！",
+    "description": "当社のコンテンツを複数の言語でご覧ください。"
+  },
+  "IndexPage": {
+    "login": "ログイン",
+    "logout": "ログアウト",
+    "joined": "アカウントをお持ちですか？",
+    "app_name": "SaaStart",
+    "description_1": "SaaStartは、Next.jsとAuth0を使用して構築されたリファレンスB2B SaaSアプリケーションです。",
+    "description_2": "マルチテナント対応、ユーザー管理とアクセス制御、セキュリティポリシー、セルフサービスによるシングルサインオン設定など、さらに多くの機能が標準で提供されます。"
+  },
+  "SignUpForm": {
+    "title": "SaaStartを無料で試す",
+    "description": "メールアドレスを入力して登録し、あなたとチームメイトの新しい組織を作成してください。",
+    "email": "メールアドレス",
+    "button": "はじめる"
+  }
+}
