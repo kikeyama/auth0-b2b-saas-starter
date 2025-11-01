@@ -10,8 +10,8 @@ import { WelcomeBackCard } from "./welcome-back-card"
 import { SubmitButton } from "@/components/submit-button"
 
 //import {use} from 'react';
-import {setRequestLocale} from 'next-intl/server';
-import {getTranslations} from 'next-intl/server';
+import { setRequestLocale } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 
 export default async function Home({params}) {
   const session = await appClient.getSession();

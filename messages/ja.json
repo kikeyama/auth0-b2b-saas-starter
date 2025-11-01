@@ -1,5 +1,5 @@
 {
-  "home": {
+  "sample": {
     "title": "ようこそ！",
     "description": "当社のコンテンツを複数の言語でご覧ください。"
   },
@@ -15,6 +15,12 @@
     "title": "SaaStartを無料で試す",
     "description": "メールアドレスを入力して登録し、あなたとチームメイトの新しい組織を作成してください。",
     "email": "メールアドレス",
-    "button": "はじめる"
+    "button": "はじめる",
+    "agreement": "続行することにより当社の <terms>利用規約</terms> および <privacy>プライバシーポリシー</privacy> に同意したものとみなされます。"
+  },
+  "WelcomeBackCard": {
+    "title": "おかえりなさい！",
+    "description": "SaaStartにログインしています。",
+    "link": "ダッシュボードへ進む"
   }
 }

@@ -10,9 +10,23 @@ exports.onExecutePostLogin = async (event, api) => {
   const mfaPolicy = JSON.parse(event.organization?.metadata.mfaPolicy || "{}")
 
   if (mfaPolicy.enforce) {
+    // added for phone providers
+    const providers = mfaPolicy.providers.map((p) => {
+      if (p === 'sms' || p === 'voice') {
+        return {
+          type: 'phone',
+          options: {preferredMethod: p},
+        }
+      } else {
+        return {
+          type: p,
+        }
+      }
+    });
+
     // user is not enrolled in any factors but MFA is enforced
     if (!event.user.multifactor || event.user.multifactor.length === 0) {
-      return api.authentication.enrollWithAny(mfaPolicy.providers.map((p) => ({ type: p })))
+      return api.authentication.enrollWithAny(providers);
     }
 
     if (mfaPolicy.skipForDomains.length > 0) {
@@ -27,10 +41,10 @@ exports.onExecutePostLogin = async (event, api) => {
       // if the MFA policy is set to enforce and the domain is not part
       // of the list of domains to handle MFA externally at the IdP
       if (!mfaPolicy.skipForDomains.includes(domain)) {
-        api.authentication.challengeWithAny(mfaPolicy.providers.map((p) => ({ type: p })))
+        api.authentication.challengeWithAny(providers);
       }
     } else {
-      api.authentication.challengeWithAny(mfaPolicy.providers.map((p) => ({ type: p })))
+      api.authentication.challengeWithAny(providers);
     }
   }
 };

@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 
-import "./globals.css"
+import "../globals.css"
 
 import { Inter } from "next/font/google"
 import Script from "next/script"
@@ -8,9 +8,9 @@ import Script from "next/script"
 import { Toaster } from "@/components/ui/sonner"
 import { ThemeProvider } from "@/components/theme-provider"
 
-import {setRequestLocale} from 'next-intl/server';
-import {NextIntlClientProvider, hasLocale} from 'next-intl';
-import {routing} from '@/i18n/routing';
+import { setRequestLocale } from 'next-intl/server';
+import { NextIntlClientProvider, hasLocale } from 'next-intl';
+import { routing } from '@/i18n/routing';
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({locale}));
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://saastart.app"),
 }
 
-export default async function RootLayout({
+export default async function HomeLayout({
   children,
   params,
 }: Readonly<{

@@ -16,7 +16,7 @@ import {getTranslations} from 'next-intl/server';
     // Once the request locale is set, you
     // can call hooks from `next-intl`
 //    const t = useTranslations('home');
-    const t = await getTranslations('home');  // async
+    const t = await getTranslations('sample');  // async
 
     return (
       <div>

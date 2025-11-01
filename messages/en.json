@@ -1,5 +1,5 @@
 {
-  "home": {
+  "sample": {
     "title": "Welcome to My Website",
     "description": "Explore our content in multiple languages."
   },
@@ -15,6 +15,12 @@
     "title": "Try SaaStart for Free",
     "description": "Enter your email address to sign up and create a new organization for you and your collaborators.",
     "email": "Email",
-    "button": "Get Started"
+    "button": "Get Started",
+    "agreement": "By continuing, you agree to our <terms>Terms of Service</terms> and <privacy>Privacy Policy</privacy>."
+  },
+  "WelcomeBackCard": {
+    "title": "Welcome Back!",
+    "description": "You are currently logged in to SaaStart.",
+    "link": "Continue to Dashboard"
   }
 }

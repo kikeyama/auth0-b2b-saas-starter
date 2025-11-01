@@ -1,11 +1,11 @@
-import Link from "next/link"
+import { Link } from "@/i18n/navigation"
 import { redirect } from "next/navigation"
 
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { SubmitButton } from "@/components/submit-button"
 
-import {useTranslations} from 'next-intl';
+import { useTranslations } from 'next-intl';
 
 export function SignUpForm() {
   const t = useTranslations('SignUpForm');
@@ -49,21 +49,24 @@ export function SignUpForm() {
         </div>
       </form>
       <p className="px-8 text-center text-sm text-muted-foreground">
-        By continuing, you agree to our{" "}
-        <Link
-          href="/terms"
-          className="underline underline-offset-4 hover:text-primary"
-        >
-          Terms of Service
-        </Link>{" "}
-        and{" "}
-        <Link
-          href="/privacy"
-          className="underline underline-offset-4 hover:text-primary"
-        >
-          Privacy Policy
-        </Link>
-        .
+        {t.rich('agreement', {
+          terms: (chunks) => (
+            <Link
+              href="/terms"
+              className="underline underline-offset-4 hover:text-primary"
+            >
+              {chunks}
+            </Link>
+          ),
+          privacy: (chunks) => (
+            <Link
+              href="/privacy"
+              className="underline underline-offset-4 hover:text-primary"
+            >
+              {chunks}
+            </Link>
+          ),
+        })}
       </p>
     </div>
   )
