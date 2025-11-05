@@ -3,6 +3,10 @@
     "title": "ようこそ！",
     "description": "当社のコンテンツを複数の言語でご覧ください。"
   },
+  "Metadata": {
+    "title": "SaaStart | Auth0",
+    "description": "SaaStartは、Next.jsとAuth0を使用して構築されたリファレンスB2B SaaSアプリケーションです。"
+  },
   "IndexPage": {
     "login": "ログイン",
     "logout": "ログアウト",
@@ -22,5 +26,362 @@
     "title": "おかえりなさい！",
     "description": "SaaStartにログインしています。",
     "link": "ダッシュボードへ進む"
+  },
+  "DashboardLayout": {
+    "home_header": "Home",
+    "app_name": "SaaStart",
+    "home_footer": "Home",
+    "source": "Source"
+  },
+  "DashboardHome": {
+    "title": "SaaStarterをはじめる",
+    "description_1": "このリファレンスアプリは、Auth0を活用したマルチテナントB2B SaaSアプリケーションの構築方法のデモです。",
+    "description_2": "設定ダッシュボードに移動し、メンバーシップ管理、シングルサインオン設定、セキュリティポリシーなどの一般的な管理機能を確認してください。",
+    "button": "設定に移動",
+    "caution": "（組織内で <admin>管理者</admin> ロールとしてログインしている必要があります）"
+  },
+  "OrganizationLayout": {
+    "sidebar_nav": {
+      "general": "一般設定",
+      "member": "メンバー管理",
+      "sso": "シングルサインオン",
+      "security": "セキュリティポリシー"
+    },
+    "unauthorized": {
+      "title": "許可されていません",
+      "description_1": "現在 <role>{user_role, select, admin {管理者} member {メンバー} other {不明}}</role> ロールでログインしています。",
+      "description_2": "<admin>管理者</admin> ロールを持つ組織メンバーとしてログインし、組織の設定を管理してください。"
+    },
+    "button": "ホームに戻る"
+  },
+  "GeneralSettings": {
+    "title": "一般設定",
+    "description": "組織の一般設定を更新"
+  },
+  "OrgDisplayNameForm": {
+    "title": "表示名",
+    "description": "組織の表示名を更新してください。",
+    "org_name": "表示名",
+    "org_slug": "識別子",
+    "org_slug_description": "変更できません。",
+    "button": "保存"
+  },
+  "Members": {
+    "title": "メンバー管理",
+    "description": "組織のメンバーを管理"
+  },
+  "MembersList": {
+    "title": "現在のメンバー",
+    "description": "現在の組織のメンバー",
+    "admin": "管理者",
+    "member": "メンバー",
+    "delete": "削除"
+  },
+  "InvitationsList": {
+    "title": "保留中の招待",
+    "description": "送信済みだがまだ受け入れられていない招待",
+    "email": "メールアドレス",
+    "role": "ロール",
+    "invited_by": "招待者",
+    "user_role": "{user_role, select, admin {管理者} member {メンバー} other {不明}}",
+    "copy_link": "招待リンクをコピー",
+    "delete": "削除"
+  },
+  "CreateInvitationForm": {
+    "title": "チームメンバーを招待",
+    "description": "チームメンバーをメールアドレスでこの組織に招待",
+    "email": "メールアドレス",
+    "role": "ロール",
+    "admin": "管理者",
+    "member": "メンバー",
+    "button": "送信"
+  },
+  "SSO": {
+    "title": "シングルサインオン",
+    "description": "組織のSSOを設定"
+  },
+  "ConnectionsList": {
+    "title": "設定された接続",
+    "description": "現在組織内で有効になっているSSO接続",
+    "table": {
+      "caption": "{count, plural, =0 {設定された接続はありません} =1 {1 個の接続があります} other {# 個の接続があります}}。",
+      "col_name": "名前",
+      "col_strategy": "種別",
+      "col_membership": "自動メンバーシップ",
+      "membership_enabled": "有効",
+      "membership_disabled": "無効",
+      "connection_settings": "設定",
+      "connection_provisioning": "プロビジョニング",
+      "delete": "削除",
+      "alert": {
+        "title": "{name} を削除しますか？",
+        "description": "接続およびそれを使用して認証したすべてのユーザーが完全に削除されます。",
+        "cancel": "キャンセル",
+        "continue": "続ける",
+        "error": "この接続は既に削除されています"
+      }
+    },
+    "add": "接続を追加",
+    "oidc": "OIDC",
+    "saml": "SAML"
+  },
+  "CreateOidcConnection": {
+    "back": "接続設定に戻る"
+  },
+  "CreateOidcConnectionForm": {
+    "title": "OIDC接続を作成",
+    "description": "組織用の新規OpenID Connect接続を設定",
+    "name": "接続名",
+    "identifier": "識別子",
+    "discovery_url": "ディスカバリーURL",
+    "type": {
+      "title": "種別",
+      "back_channel": {
+        "title": "バックチャネル",
+        "description": "<response_type>response_type=code</response_type> を使用"
+      },
+      "front_channel": {
+        "title": "フロントチャネル",
+        "description": "<response_mode>response_mode=form_post</response_mode> と <response_type>response_type=id_token</response_type> を使用"
+      }
+    },
+    "client_id": "クライアントID",
+    "client_secret": "クライアントシークレット",
+    "scopes": {
+      "title": "スコープ",
+      "description": "スコープをスペース区切りのリストで記載（必須: <openid>openid</openid>）"
+    },
+    "domains": {
+      "title": "ドメイン",
+      "alert": "ドメインが追加されていません。"
+    },
+    "callback_url": {
+      "title": "コールバックURL",
+      "description": "以下のコールバックURLでOIDC発行者を設定する必要がある場合があります:",
+      "success": "コールバックURLがクリップボードにコピーされました。"
+    },
+    "auto_membership": {
+      "title": "自動メンバーシップ",
+      "enable": {
+        "title": "自動メンバーシップを有効にする",
+        "description": "この接続でログインするすべてのユーザーは、自動的にこの組織のメンバーとして追加されます。"
+      },
+      "disable": {
+        "title": "自動メンバーシップを無効にする",
+        "description": "この接続でログインするすべてのユーザーは、この組織のメンバーとして追加されません。"
+      }
+    },
+    "button": "接続を作成",
+    "success": "接続が作成されました。"
+  },
+  "createOidcConnection": {
+    "no_name": "接続名は必須です。",
+    "no_discovery_url": "ディスカバリーURLは必須です。",
+    "no_client_id": "クライアントIDは必須です。",
+    "no_type": "種別は必須です。",
+    "no_scopes": "スコープは必須です。",
+    "no_auto_membership": "自動メンバーシップは必須です。",
+    "domain_error": "ドメイン {domain} は正しくありません。",
+    "failed_to_create": "SSO接続の作成に失敗しました。"
+  },
+  "deleteOidcConnection": {
+    "no_connection_id": "接続IDは必須です。",
+    "connection_not_found": "接続が見つかりません。",
+    "failed_to_delete": "SSO接続の削除に失敗しました。"
+  },
+  "CreateSamlConnection": {
+    "back": "接続設定に戻る"
+  },
+  "CreateSamlConnectionForm": {
+    "title": "SAML接続を作成",
+    "description": "組織用の新規SAML接続を設定",
+    "name": "接続名",
+    "identifier": "識別子",
+    "sign_in_url": "サインインURL",
+    "sign_out_url": "サインアウトURL",
+    "certificate": "X509証明書",
+    "user_id_attribute": "ユーザーID属性",
+    "protocol_binding": "プロトコルバインディング",
+    "http_redirect": "HTTP リダイレクト",
+    "http_post": "HTTP POST",
+    "domains": {
+      "title": "ドメイン",
+      "alert": "ドメインが追加されていません。"
+    },
+    "sign_request": {
+      "title": "署名リクエスト",
+      "description": "リクエストは <rsa_sha256>RSA-SHA256</rsa_sha256> で署名されます。 <download>証明書をダウンロード</download> して、リクエスト署名を検証するためにIDプロバイダーを設定してください。"
+    },
+    "post_back_url": {
+      "title": "ポストバックURL",
+      "description": "以下のポストバックURLを使用して、SAML IDプロバイダーを設定する必要があります:",
+      "success": "ポストバックURLがクリップボードにコピーされました。"
+    },
+    "auto_membership": {
+      "title": "自動メンバーシップ",
+      "enable": {
+        "title": "自動メンバーシップを有効にする",
+        "description": "この接続でログインするすべてのユーザーは、自動的にこの組織のメンバーとして追加されます。"
+      },
+      "disable": {
+        "title": "自動メンバーシップを無効にする",
+        "description": "この接続でログインするすべてのユーザーは、この組織のメンバーとして追加されません。"
+      }
+    },
+    "button": "接続を作成",
+    "success": "接続が作成されました。"
+  },
+  "createSamlConnection": {
+    "no_name": "接続名は必須です。",
+    "no_signin_url": "サインインURLは必須です。",
+    "no_certificate": "証明書は必須です。",
+    "no_protocol_binding": "プロトコルバインディングは必須です。",
+    "no_auto_membership": "自動メンバーシップは必須です。",
+    "domain_error": "ドメイン {domain} は正しくありません。",
+    "failed_to_create": "SSO接続の作成に失敗しました。"
+  },
+  "deleteSamlConnection": {
+    "no_connection_id": "接続IDは必須です。",
+    "connection_not_found": "接続が見つかりません。",
+    "failed_to_delete": "SSO接続の削除に失敗しました。"
+  },
+  "SecurityPolicies": {
+    "title": "セキュリティポリシー",
+    "description": "組織のセキュリティポリシーを管理"
+  },
+  "MfaPolicyForm": {
+    "title": "セキュリティポリシー",
+    "description": "組織のMFAポリシーを設定",
+    "enforce_mfa": {
+      "title": "多要素認証を強制する",
+      "description": "ユーザーは本人確認のために第二要素による認証が必要となります。"
+    },
+    "do_not_enforce": {
+      "title": "以下のメールドメインに対して多要素認証を適用しない",
+      "description": "カンマ区切りのメールドメインのリストを入力してください。"
+    },
+    "mfa_providers": {
+      "title": "ユーザーが使用を許可されているMFAプロバイダーを選択",
+      "phone": {
+        "title": "電話メッセージ",
+        "description": "テキストメッセージによるワンタイムコード送信"
+      },
+      "otp": {
+        "title": "ワンタイムパスワード",
+        "description": "Google Authenticatorのようなアプリを使ったOTP"
+      },
+      "webauthn_roaming": {
+        "title": "セキュリティキー",
+        "description": "WebAuthn準拠のセキュリティキー（FIDO2など）"
+      }
+    },
+    "button": "保存",
+    "success": "組織のMFAポリシーが更新されました。"
+  },
+  "updateMfaPolicy": {
+    "error": "組織のMFAポリシーの更新に失敗しました。"
+  },
+  "AccountLayout": {
+    "sidebar_nav": {
+      "profile": "プロファイル",
+      "security": "セキュリティ",
+      "debug": "デバッグ"
+    }
+  },
+  "Profile": {
+    "title": "プロファイル",
+    "description": "個人情報を管理"
+  },
+  "AccountDisplayNameForm": {
+    "title": "表示名",
+    "description": "他のユーザーに表示させたい名前を入力してください。",
+    "button": "保存",
+    "success": "表示名が更新されました。"
+  },
+  "DeleteAccountForm": {
+    "title": "アカウント削除",
+    "description": "所属するすべての組織から、すべてのプロフィールデータを完全に削除します。",
+    "warning": "<warning>警告:</warning> この操作は即時実行され、取り消すことはできません。",
+    "button": "アカウントを削除",
+    "success": "アカウントが削除されました。ログアウトします。"
+  },
+  "updateDisplayName": {
+    "no_display_name": "表示名は必須です。",
+    "failed_to_update": "表示名の更新に失敗しました。"
+  },
+  "deleteAccount": {
+    "failed_to_delete": "アカウント削除に失敗しました。"
+  },
+  "Security": {
+    "title": "セキュリティ",
+    "description": "アカウントのセキュリティ設定を管理"
+  },
+  "MFAEnrollmentForm": {
+    "title": "多要素認証",
+    "description": "アカウントの多要素認証登録を管理",
+    "factors": {
+      "sms": {
+        "title": "電話メッセージ",
+        "description": "確認コード付きの電話メッセージを送信"
+      },
+      "push_notification": {
+        "title": "Auth0 Guardianを使用したプッシュ通知",
+        "description": "Auth0 Guardianを使用してプッシュ通知を提供"
+      },
+      "otp": {
+        "title": "ワンタイムパスワード",
+        "description": "Google Authenticator または類似のアプリを使用してワンタイムパスワードを提供"
+      },
+      "email": {
+        "title": "メール",
+        "description": "確認コードを含むメールを送信"
+      },
+      "duo": {
+        "title": "Duoセキュリティ",
+        "description": "DUOアカウントを多要素認証に利用"
+      },
+      "webauthn_roaming": {
+        "title": "FIDOセキュリティキーによるWebAuthn",
+        "description": "お使いのブラウザによっては、WebAuthn準拠のセキュリティキー（FIDO2など）を第二の認証要素として利用可能"
+      },
+      "webauthn_platform": {
+        "title": "FIDOデバイス生体情報によるWebAuthn",
+        "description": "お使いのブラウザによっては、WebAuthn準拠のデバイス生体認証を第二の認証要素として利用可能"
+      },
+      "recovery_code": {
+        "title": "リカバリーコード",
+        "description": "ユーザーがアカウントへのアクセスを回復できるようにする固有のコードを提供"
+      }
+    },
+    "enrolled": "登録済み",
+    "remove": {
+      "button": "削除",
+      "success": "登録が削除されました。"
+    },
+    "enroll": {
+      "button": "登録"
+    }
+  },
+  "createEnrollment": {
+    "no_factor_name": "要素名は必須です。",
+    "failed_to_create": "登録チケットの作成に失敗しました。"
+  },
+  "deleteEnrollment": {
+    "no_enrollment_id": "登録IDは必須です。",
+    "failed_to_delete": "登録の削除に失敗しました。"
+  },
+  "Debug": {
+    "title": "デバッグ",
+    "description": "デバッグ用データを確認"
+  },
+  "DisplayUserSession": {
+    "title": "ユーザー情報",
+    "description": "デバッグ用ユーザーセッションを表示"
+  },
+  "Create": {
+    "logo": "SaaStart",
+    "description_1": "SaaStart is a reference B2B SaaS application built using Next.js and Auth0.",
+    "description_2": "It features multi-tenancy support, user management and access controls, security policies, self-service Single Sign-On configuration and more out-of-the-box.",
+    "credit": "— Built by Auth0"
   }
 }

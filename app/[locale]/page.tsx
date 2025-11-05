@@ -1,4 +1,4 @@
-import Link from "next/link"
+import { Link } from "@/i18n/navigation"
 
 import { appClient } from "@/lib/auth0"
 import { cn } from "@/lib/utils"
@@ -10,19 +10,21 @@ import { WelcomeBackCard } from "./welcome-back-card"
 import { SubmitButton } from "@/components/submit-button"
 
 //import {use} from 'react';
-import { setRequestLocale } from 'next-intl/server';
-import { getTranslations } from 'next-intl/server';
+import { setRequestLocale, getTranslations } from 'next-intl/server';
 
-export default async function Home({params}) {
-  const session = await appClient.getSession();
-
+export default async function Home({
+  params
+}: Readonly<{
+  params: Promise<{locale: string}>
+}>) {
 //  const {locale} = use(params);
   const {locale} = await params;
-
   // Enable static rendering
   setRequestLocale(locale);
-
+  // Get translation from messages
   const t = await getTranslations('IndexPage');
+
+  const session = await appClient.getSession();
 
   return (
     <div className="container relative sm:grid h-screen flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">

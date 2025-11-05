@@ -3,6 +3,10 @@
     "title": "Welcome to My Website",
     "description": "Explore our content in multiple languages."
   },
+  "Metadata": {
+    "title": "SaaStart | Auth0",
+    "description": "SaaStart is a reference B2B SaaS application built using Next.js and Auth0."
+  },
   "IndexPage": {
     "login": "Log in",
     "logout": "Logout",
@@ -22,5 +26,362 @@
     "title": "Welcome Back!",
     "description": "You are currently logged in to SaaStart.",
     "link": "Continue to Dashboard"
+  },
+  "DashboardLayout": {
+    "home_header": "Home",
+    "app_name": "SaaStart",
+    "home_footer": "Home",
+    "source": "Source"
+  },
+  "DashboardHome": {
+    "title": "Explore the SaaS Starter",
+    "description_1": "This reference app demonstrates how to build a multi-tenant B2B SaaS application powered by Auth0.",
+    "description_2": "Head over to the Settings Dashboard to explore common administrative capabilities like membership management, single sign-on configuration, and security policies.",
+    "button": "Navigate to Settings",
+    "caution": "(You must be logged in with an <admin>admin</admin> role in your organization.)"
+  },
+  "OrganizationLayout": {
+    "sidebar_nav": {
+      "general": "General Settings",
+      "member": "Members",
+      "sso": "SSO",
+      "security": "Security Policies"
+    },
+    "unauthorized": {
+      "title": "Unauthorized",
+      "description_1": "You’re currently logged in with the role of <role>{user_role, select, admin {Admin} member {Member} other {Unknown}}</role>.",
+      "description_2": "Log in as an Organization member with the <admin>admin</admin> role to manage your Organization's settings."
+    },
+    "button": "Go Back to Home"
+  },
+  "GeneralSettings": {
+    "title": "General Settings",
+    "description": "Update your organization's general settings."
+  },
+  "OrgDisplayNameForm": {
+    "title": "Display Name",
+    "description": "Update the organization's display name.",
+    "org_name": "Display Name",
+    "org_slug": "Slug",
+    "org_slug_description": "This cannot be changed.",
+    "button": "Save"
+  },
+  "Members": {
+    "title": "Members",
+    "description": "Manage the members of the organization."
+  },
+  "MembersList": {
+    "title": "Current Members",
+    "description": "The current organization members.",
+    "admin": "Admin",
+    "member": "Member",
+    "delete": "Delete"
+  },
+  "InvitationsList": {
+    "title": "Pending Invitations",
+    "description": "Invitations that have been sent out but have not yet been redeemed.",
+    "email": "Email",
+    "role": "Role",
+    "invited_by": "Invited By",
+    "user_role": "{user_role, select, admin {Admin} member {Member} other {Unknown}}",
+    "copy_link": "Copy invitation link",
+    "delete": "Delete"
+  },
+  "CreateInvitationForm": {
+    "title": "Invite team members",
+    "description": "Invite team members to join this organization using their email address.",
+    "email": "Email address",
+    "role": "Role",
+    "admin": "Admin",
+    "member": "Member",
+    "button": "Send"
+  },
+  "SSO": {
+    "title": "Single Sign-On",
+    "description": "Configure SSO for your organization."
+  },
+  "ConnectionsList": {
+    "title": "Configured Connections",
+    "description": "The currently active SSO connections for your organization.",
+    "table": {
+      "caption": "You have {count, plural, =0 {no configured connections yet} =1 {1 configured connection} other {# configured connections}}.",
+      "col_name": "Name",
+      "col_strategy": "Strategy",
+      "col_membership": "Auto-Membership",
+      "membership_enabled": "Enabled",
+      "membership_disabled": "Disabled",
+      "connection_settings": "Settings",
+      "connection_provisioning": "Provisioning",
+      "delete": "Delete",
+      "alert": {
+        "title": "Delete Connection {name}?",
+        "description": "This will permanently delete the connection and all users who have authenticated with it.",
+        "cancel": "Cancel",
+        "continue": "Continue",
+        "error": "The connection has been deleted."
+      }
+    },
+    "add": "Add Connection",
+    "oidc": "OIDC",
+    "saml": "SAML"
+  },
+  "CreateOidcConnection": {
+    "back": "Back to connections"
+  },
+  "CreateOidcConnectionForm": {
+    "title": "Create an OIDC Connection",
+    "description": "Configure a new OpenID Connect connection for your organization.",
+    "name": "Connection Name",
+    "identifier": "Identifier",
+    "discovery_url": "Discovery URL",
+    "type": {
+      "title": "Type",
+      "back_channel": {
+        "title": "Back Channel",
+        "description": "Uses <response_type>response_type=code</response_type>."
+      },
+      "front_channel": {
+        "title": "Front Channel",
+        "description": "Uses <response_mode>response_mode=form_post</response_mode> and <response_type>response_type=id_token</response_type>."
+      }
+    },
+    "client_id": "Client ID",
+    "client_secret": "Client Secret",
+    "scopes": {
+      "title": "Scopes",
+      "description": "A space-separated list of scopes. Must contain <openid>openid</openid>."
+    },
+    "domains": {
+      "title": "Domains",
+      "alert": "No domains have been added yet."
+    },
+    "callback_url": {
+      "title": "Callback URL",
+      "description": "You may need to configure the OIDC issuer with the following callback URL:",
+      "success": "Callback URL copied to clipboard."
+    },
+    "auto_membership": {
+      "title": "Auto-Membership",
+      "enable": {
+        "title": "Enable Auto-Membership",
+        "description": "All users logging in with this connection will be automatically added as members of this organization."
+      },
+      "disable": {
+        "title": "Disable Auto-Membership",
+        "description": "All users logging in with this connection will not be added as members to this organization."
+      }
+    },
+    "button": "Create Connection",
+    "success": "The connection has been created."
+  },
+  "createOidcConnection": {
+    "no_name": "Connection name is required.",
+    "no_discovery_url": "Discovery URL is required.",
+    "no_client_id": "Client ID is required.",
+    "no_type": "Type is required.",
+    "no_scopes": "Scope is required.",
+    "no_auto_membership": "Auto-membership is required.",
+    "domain_error": "The domain {domain} is not verified.",
+    "failed_to_create": "Failed to create the SSO connection."
+  },
+  "deleteOidcConnection": {
+    "no_connection_id": "Connection ID is required.",
+    "connection_not_found": "Connection not found.",
+    "failed_to_delete": "Failed to delete the SSO connection."
+  },
+  "CreateSamlConnection": {
+    "back": "Back to connections"
+  },
+  "CreateSamlConnectionForm": {
+    "title": "Create a SAML Connection",
+    "description": "Configure a new SAML connection for your organization.",
+    "name": "Connection Name",
+    "identifier": "Identifier",
+    "sign_in_url": "Sign In URL",
+    "sign_out_url": "Sign Out URL",
+    "certificate": "X509 Signing Certificate",
+    "user_id_attribute": "User ID Attribute",
+    "protocol_binding": "Protocol Binding",
+    "http_redirect": "HTTP Redirect",
+    "http_post": "HTTP POST",
+    "domains": {
+      "title": "Domains",
+      "alert": "No domains have been added yet."
+    },
+    "sign_request": {
+      "title": "Sign Request",
+      "description": "The request will be signed with <rsa_sha256>RSA-SHA256</rsa_sha256>. <download>Download the certificate</download> to configure your identity provider to validate the request signature."
+    },
+    "post_back_url": {
+      "title": "Post-Back URL",
+      "description": "You will need to configure the SAML identity provider with the following post-back URL:",
+      "success": "Post-back URL copied to clipboard."
+    },
+    "auto_membership": {
+      "title": "Auto-Membership",
+      "enable": {
+        "title": "Enable Auto-Membership",
+        "description": "All users logging in with this connection will be automatically added as members of this organization."
+      },
+      "disable": {
+        "title": "Disable Auto-Membership",
+        "description": "All users logging in with this connection will not be added as members to this organization."
+      }
+    },
+    "button": "Create Connection",
+    "success": "The connection has been created."
+  },
+  "createSamlConnection": {
+    "no_name": "Connection name is required.",
+    "no_signin_url": "Sign-in URL is required.",
+    "no_certificate": "Certificate is required.",
+    "no_protocol_binding": "Protocol binding is required.",
+    "no_auto_membership": "Auto-membership is required.",
+    "domain_error": "The domain {domain} is not verified.",
+    "failed_to_create": "Failed to create the SSO connection."
+  },
+  "deleteSamlConnection": {
+    "no_connection_id": "Connection ID is required.",
+    "connection_not_found": "Connection not found.",
+    "failed_to_delete": "Failed to delete the SSO connection."
+  },
+  "SecurityPolicies": {
+    "title": "Security Policies",
+    "description": "Manage the security policies of your organization."
+  },
+  "MfaPolicyForm": {
+    "title": "Security Policies",
+    "description": "Configure the MFA policies for your organization.",
+    "enforce_mfa": {
+      "title": "Enforce Multi-Factor Authentication",
+      "description": "Users will be required to verify their identity with a second factor."
+    },
+    "do_not_enforce": {
+      "title": "Do not enforce MFA for the following e-mail domains",
+      "description": "Enter a comma-separated list of e-mail domains."
+    },
+    "mfa_providers": {
+      "title": "Select which MFA providers your users are allowed to use",
+      "phone": {
+        "title": "Phone Message",
+        "description": "One time code via phone text messages."
+      },
+      "otp": {
+        "title": "One-time Password",
+        "description": "OTP using Google Authenticator or similar."
+      },
+      "webauthn_roaming": {
+        "title": "Security Keys",
+        "description": "WebAuthn-compliant security keys (like FIDO2)."
+      }
+    },
+    "button": "Save",
+    "success": "The organization's MFA policy has been updated."
+  },
+  "updateMfaPolicy": {
+    "error": "Failed to update the organization's MFA policy."
+  },
+  "AccountLayout": {
+    "sidebar_nav": {
+      "profile": "Profile",
+      "security": "Security",
+      "debug": "Debug"
+    }
+  },
+  "Profile": {
+    "title": "Profile",
+    "description": "Manage your personal information."
+  },
+  "AccountDisplayNameForm": {
+    "title": "Display Name",
+    "description": "Enter a name you would liked to have displayed to other users.",
+    "button": "Save",
+    "success": "Your display name has been updated."
+  },
+  "DeleteAccountForm": {
+    "title": "Delete Account",
+    "description": "Permanently remove all profile data across all organizations you belong to.",
+    "warning": "<warning>Warning:</warning> This action is immediate and cannot be undone.",
+    "button": "Delete Account",
+    "success": "Your account has been deleted and you will be logged out."
+  },
+  "updateDisplayName": {
+    "no_display_name": "Display name is required.",
+    "failed_to_update": "Failed to update your display name."
+  },
+  "deleteAccount": {
+    "failed_to_delete": "Failed to delete your account."
+  },
+  "Security": {
+    "title": "Security",
+    "description": "Manage your account's security settings."
+  },
+  "MFAEnrollmentForm": {
+    "title": "Multi-Factor Authentication",
+    "description": "Manage the MFA enrollments for your account.",
+    "factors": {
+      "sms": {
+        "title": "Phone Message",
+        "description": "Users will receive a phone message with a verification code"
+      },
+      "push_notification": {
+        "title": "Push Notification using Auth0 Guardian",
+        "description": "Provide a push notification using Auth0 Guardian."
+      },
+      "otp": {
+        "title": "One-time Password",
+        "description": "Provide a one-time password using Google Authenticator or similar."
+      },
+      "email": {
+        "title": "Email",
+        "description": "Users will receive an email message containing a verification code."
+      },
+      "duo": {
+        "title": "Duo Security",
+        "description": "Use your DUO account for Multi-factor Authentication."
+      },
+      "webauthn_roaming": {
+        "title": "WebAuthn with FIDO Security Keys",
+        "description": "Depending on your browser, you can use WebAuthn-compliant security keys (like FIDO2) as a second factor of authentication."
+      },
+      "webauthn_platform": {
+        "title": "WebAuthn with FIDO Device Biometrics",
+        "description": "Depending on your browser, you can use WebAuthn-compliant device biometrics as a second factor of authentication"
+      },
+      "recovery_code": {
+        "title": "Recovery Code",
+        "description": "Provide a unique code that allows users to regain access to their account."
+      }
+    },
+    "enrolled": "Enrolled",
+    "remove": {
+      "button": "Remove",
+      "success": "Enrollment removed successfully."
+    },
+    "enroll": {
+      "button": "Enroll"
+    }
+  },
+  "createEnrollment": {
+    "no_factor_name": "Factor name is required.",
+    "failed_to_create": "Failed to create an enrollment ticket."
+  },
+  "deleteEnrollment": {
+    "no_enrollment_id": "Enrollment ID is required.",
+    "failed_to_delete": "Failed to delete enrollment."
+  },
+  "Debug": {
+    "title": "Debug",
+    "description": "Review your debug data."
+  },
+  "DisplayUserSession": {
+    "title": "User",
+    "description": "User session is displayed here for debugging."
+  },
+  "Create": {
+    "logo": "SaaStart",
+    "description_1": "SaaStart is a reference B2B SaaS application built using Next.js and Auth0.",
+    "description_2": "It features multi-tenancy support, user management and access controls, security policies, self-service Single Sign-On configuration and more out-of-the-box.",
+    "credit": "— Built by Auth0"
   }
 }

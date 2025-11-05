@@ -8,8 +8,8 @@ import Script from "next/script"
 import { Toaster } from "@/components/ui/sonner"
 import { ThemeProvider } from "@/components/theme-provider"
 
-import { setRequestLocale } from 'next-intl/server';
-import { NextIntlClientProvider, hasLocale } from 'next-intl';
+import { setRequestLocale, getTranslations } from 'next-intl/server';
+import { NextIntlClientProvider } from 'next-intl';
 import { routing } from '@/i18n/routing';
 
 export function generateStaticParams() {
@@ -18,11 +18,15 @@ export function generateStaticParams() {
 
 const inter = Inter({ subsets: ["latin"] })
 
-export const metadata: Metadata = {
-  title: "SaaStart | Auth0",
-  description:
-    "SaaStart is a reference B2B SaaS application built using Next.js and Auth0 by Okta.",
-  metadataBase: new URL("https://saastart.app"),
+export async function generateMetadata({params}: Promise<{locale: string}>) {
+  const {locale} = await params;
+  const t = await getTranslations({locale, namespace: 'Metadata'});
+
+  return {
+    title: t('title'),
+    description: t('description'),
+    metadataBase: new URL("https://saastart.app"),
+  };
 }
 
 export default async function HomeLayout({
@@ -34,7 +38,6 @@ export default async function HomeLayout({
 }>) {
   // Ensure that the incoming `locale` is valid
   const {locale} = await params;
-
   // Enable static rendering
   setRequestLocale(locale);
 
