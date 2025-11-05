@@ -117,7 +117,7 @@ export function OrganizationSwitcher({
             <CommandGroup>
               <CommandItem
                 onSelect={() => {
-                  router.push("/onboarding/create")
+                  router.push("/welcome/create")
                   setOpen(false)
                 }}
                 className="cursor-pointer"
