@@ -12,7 +12,12 @@ import { SubmitButton } from "@/components/submit-button"
 
 import { createOrganization } from "./actions"
 
+import { useTranslations } from 'next-intl';
+
 export function CreateOrganizationForm() {
+  // Get translation from messages
+  const t = useTranslations('CreateOrganizationForm');
+
   const { user } = useUser()
   const [name, setName] = useState("")
 
@@ -24,13 +29,13 @@ export function CreateOrganizationForm() {
         if (error) {
           toast.error(error)
         } else {
-          toast.success("Your organization has been created.")
+          toast.success(t('success'))
         }
       }}
     >
       <div className="grid gap-4">
         <div className="grid gap-2">
-          <Label htmlFor="email">Email</Label>
+          <Label htmlFor="email">{t('email')}</Label>
           <Input
             value={user?.email || ""}
             id="email"
@@ -41,7 +46,7 @@ export function CreateOrganizationForm() {
           />
         </div>
         <div className="grid gap-2">
-          <Label htmlFor="organization_name">Organization Name</Label>
+          <Label htmlFor="organization_name">{t('org_name')}</Label>
           <Input
             id="organization_name"
             name="organization_name"
@@ -55,10 +60,10 @@ export function CreateOrganizationForm() {
             onChange={(e) => setName(e.target.value)}
           />
           <p className="text-sm text-muted-foreground">
-            Slug: <Code>{slugify(name || "Acme Corp")}</Code>
+            {t('slug')}: <Code>{slugify(name || "Acme Corp")}</Code>
           </p>
         </div>
-        <SubmitButton>Create Organization</SubmitButton>
+        <SubmitButton>{t('button')}</SubmitButton>
       </div>
     </form>
   )

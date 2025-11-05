@@ -5,7 +5,12 @@ import slugify from "@sindresorhus/slugify"
 
 import { managementClient, onboardingClient } from "@/lib/auth0"
 
+import { getTranslations } from 'next-intl/server';
+
 export async function createOrganization(formData: FormData) {
+  // Get translation from messages
+  const t = await getTranslations('createOrganization');
+
   const session = await onboardingClient.getSession()
 
   if (!session) {
@@ -16,7 +21,7 @@ export async function createOrganization(formData: FormData) {
 
   if (!organizationName || typeof organizationName !== "string") {
     return {
-      error: "Organization name is required.",
+      error: t('no_org_name'),
     }
   }
 
@@ -54,7 +59,7 @@ export async function createOrganization(formData: FormData) {
   } catch (error) {
     console.error("failed to create an organization", error)
     return {
-      error: "Failed to create an organization.",
+      error: t('failed_to_create'),
     }
   }
 

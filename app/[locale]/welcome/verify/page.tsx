@@ -14,17 +14,21 @@ import { SubmitButton } from "@/components/submit-button"
 
 import { resendVerificationEmail } from "./actions"
 
+import { useTranslations } from 'next-intl';
+
 export default function Verify() {
+  // Get translation from messages
+  const t = useTranslations('Verify');
+
   return (
     <Card className="mx-auto max-w-sm">
       <CardHeader>
         <CardTitle className="grid gap-2">
           <EnvelopeClosedIcon className="size-5" />
-          <span>Verify your e-mail</span>
+          <span>{t('title')}</span>
         </CardTitle>
         <CardDescription>
-          Please check your inbox for a verification link to continue creating
-          your account.
+          {t('description')}
         </CardDescription>
       </CardHeader>
       <CardFooter>
@@ -42,7 +46,7 @@ export default function Verify() {
             )
           }}
         >
-          <SubmitButton>Resend Verification</SubmitButton>
+          <SubmitButton>{t('button')}</SubmitButton>
         </form>
       </CardFooter>
     </Card>

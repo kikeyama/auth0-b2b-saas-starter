@@ -16,20 +16,20 @@ export default async function Create() {
         <div className="absolute inset-0 bg-zinc-900" />
         <div className="relative z-20 flex items-center text-lg font-medium">
           <Auth0Logo className="mr-2 size-8" />
-          <span className="font-mono font-medium">{t('logo')}</span>
+          <span className="font-mono font-medium">{t('left.logo')}</span>
         </div>
         <div className="relative z-20 mt-auto">
           <blockquote className="space-y-2">
             <div className="space-y-1">
               <p className="text-lg">
-                {t('description_1')}
+                {t('left.description_1')}
               </p>
               <p className="text-lg">
-                {t('description_2')}
+                {t('left.description_2')}
               </p>
             </div>
             <footer className="text-sm text-muted-foreground">
-              {t('credit')}
+              {t('left.credit')}
             </footer>
           </blockquote>
         </div>
@@ -38,29 +38,32 @@ export default async function Create() {
         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
           <div className="flex flex-col space-y-2 text-center">
             <h1 className="text-2xl font-semibold tracking-tight">
-              Create an account
+              {t('right.title')}
             </h1>
             <p className="text-sm text-muted-foreground">
-              Enter your organization name to create an account.
+              {t('right.description')}
             </p>
           </div>
           <CreateOrganizationForm />
           <p className="px-8 text-center text-sm text-muted-foreground">
-            By clicking continue, you agree to our{" "}
-            <Link
-              href="/terms"
-              className="underline underline-offset-4 hover:text-primary"
-            >
-              Terms of Service
-            </Link>{" "}
-            and{" "}
-            <Link
-              href="/privacy"
-              className="underline underline-offset-4 hover:text-primary"
-            >
-              Privacy Policy
-            </Link>
-            .
+            {t.rich('right.agreement', {
+              terms: (chunks) => (
+                <Link
+                  href="/terms"
+                  className="underline underline-offset-4 hover:text-primary"
+                >
+                  {chunks}
+                </Link>
+              ),
+              privacy: (chunks) => (
+                <Link
+                  href="/privacy"
+                  className="underline underline-offset-4 hover:text-primary"
+                >
+                  {chunks}
+                </Link>
+              )
+            })}
           </p>
         </div>
       </div>

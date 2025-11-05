@@ -4,7 +4,12 @@ import { redirect } from "next/navigation"
 
 import { managementClient, onboardingClient } from "@/lib/auth0"
 
+import { getTranslations } from 'next-intl/server';
+
 export async function resendVerificationEmail() {
+  // Get translation from messages
+  const t = await getTranslations('resendVerificationEmail');
+
   const session = await onboardingClient.getSession()
 
   if (!session) {
@@ -18,9 +23,9 @@ export async function resendVerificationEmail() {
 
     return {}
   } catch (error) {
-    console.error("failed to resend verification e-mail", error)
+    console.error(t('failed_to_resend'), error)
     return {
-      error: "Failed to resend verification e-mail.",
+      error: t('failed_to_resend'),
     }
   }
 }

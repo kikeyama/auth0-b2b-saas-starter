@@ -379,9 +379,35 @@
     "description": "User session is displayed here for debugging."
   },
   "Create": {
-    "logo": "SaaStart",
-    "description_1": "SaaStart is a reference B2B SaaS application built using Next.js and Auth0.",
-    "description_2": "It features multi-tenancy support, user management and access controls, security policies, self-service Single Sign-On configuration and more out-of-the-box.",
-    "credit": "— Built by Auth0"
+    "left": {
+      "logo": "SaaStart",
+      "description_1": "SaaStart is a reference B2B SaaS application built using Next.js and Auth0.",
+      "description_2": "It features multi-tenancy support, user management and access controls, security policies, self-service Single Sign-On configuration and more out-of-the-box.",
+      "credit": "— Built by Auth0"
+    },
+    "right": {
+      "title": "Create an account",
+      "description": "Enter your organization name to create an account.",
+      "agreement": "By continuing, you agree to our <terms>Terms of Service</terms> and <privacy>Privacy Policy</privacy>."
+    }
+  },
+  "Verify": {
+    "title": "Verify your e-mail",
+    "description": "Please check your inbox for a verification link to continue creating your account.",
+    "button": "Resend Verification"
+  },
+  "resendVerificationEmail": {
+    "failed_to_resend": "Failed to resend verification e-mail."
+  },
+  "CreateOrganizationForm": {
+    "email": "Email",
+    "org_name": "Organization Name",
+    "slug": "Slug",
+    "button": "Create Organization",
+    "success": "Your organization has been created."
+  },
+  "createOrganization": {
+    "no_org_name": "Organization name is required.",
+    "failed_to_create": "Failed to create an organization."
   }
 }

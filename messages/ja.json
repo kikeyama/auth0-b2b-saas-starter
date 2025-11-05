@@ -379,9 +379,35 @@
     "description": "デバッグ用ユーザーセッションを表示"
   },
   "Create": {
-    "logo": "SaaStart",
-    "description_1": "SaaStart is a reference B2B SaaS application built using Next.js and Auth0.",
-    "description_2": "It features multi-tenancy support, user management and access controls, security policies, self-service Single Sign-On configuration and more out-of-the-box.",
-    "credit": "— Built by Auth0"
+    "left": {
+      "logo": "SaaStart",
+      "description_1": "SaaStartは、Next.jsとAuth0を使用して構築されたリファレンスB2B SaaSアプリケーションです。",
+      "description_2": "マルチテナント対応、ユーザー管理とアクセス制御、セキュリティポリシー、セルフサービスによるシングルサインオン設定など、さらに多くの機能が標準で提供されます。",
+      "credit": "— Built by Auth0"
+    },
+    "right": {
+      "title": "アカウントを作成",
+      "description": "組織名を入力してアカウントを作成",
+      "agreement": "続行することにより当社の <terms>利用規約</terms> および <privacy>プライバシーポリシー</privacy> に同意したものとみなされます。"
+    }
+  },
+  "Verify": {
+    "title": "メールを検証",
+    "description": "アカウント作成を続行するには、確認リンクが送信された受信箱をご確認ください。",
+    "button": "再送"
+  },
+  "resendVerificationEmail": {
+    "failed_to_resend": "検証用メールの再送に失敗しました。"
+  },
+  "CreateOrganizationForm": {
+    "email": "メール",
+    "org_name": "組織名",
+    "slug": "識別子",
+    "button": "組織を作成",
+    "success": "組織が作成されました。"
+  },
+  "createOrganization": {
+    "no_org_name": "組織名は必須です。",
+    "failed_to_create": "組織の作成に失敗しました。"
   }
 }
