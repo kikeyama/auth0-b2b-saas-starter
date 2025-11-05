@@ -33,8 +33,8 @@ export function DisplayUserSession({ user }: Props) {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="grid w-full max-h-fit items-center gap-1.5 bg-gray-700 text-gray-50">
-              <pre className="overflow-auto p-3">
+        <div className="grid w-full max-h-fit items-center gap-1.5 bg-gray-700 text-gray-50 rounded-md">
+              <pre className="overflow-hidden p-3">
                 <code>{JSON.stringify(user, null, 2)}</code>
               </pre>
         </div>

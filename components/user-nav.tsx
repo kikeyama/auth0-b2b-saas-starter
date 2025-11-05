@@ -13,7 +13,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
+import { getTranslations } from 'next-intl/server';
+
 export async function UserNav() {
+  // Get translation from messages
+  const t = await getTranslations('UserNav');
+
   const session = await appClient.getSession()
 
   return (
@@ -49,10 +54,10 @@ export async function UserNav() {
           </div>
         </DropdownMenuLabel>
         <DropdownMenuItem asChild>
-          <Link href="/dashboard/account/profile">Profile</Link>
+          <Link href="/dashboard/account/profile">{t('profile')}</Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <a href="/auth/logout">Log Out</a>
+          <a href="/auth/logout">{t('logout')}</a>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

@@ -28,10 +28,10 @@
     "link": "ダッシュボードへ進む"
   },
   "DashboardLayout": {
-    "home_header": "Home",
+    "home_header": "ホーム　",
     "app_name": "SaaStart",
-    "home_footer": "Home",
-    "source": "Source"
+    "home_footer": "ホーム",
+    "source": "ソースコード"
   },
   "DashboardHome": {
     "title": "SaaStarterをはじめる",
@@ -409,5 +409,21 @@
   "createOrganization": {
     "no_org_name": "組織名は必須です。",
     "failed_to_create": "組織の作成に失敗しました。"
+  },
+  "ModeToggle": {
+    "light": "ライト",
+    "dark": "ダーク",
+    "system": "システム設定"
+  },
+  "OrganizationSwitcher": {
+    "no_org": "組織が見つかりません。",
+    "select": "組織を選択",
+    "search": "組織を検索...",
+    "organizations": "組織",
+    "create": "組織を作成"
+  },
+  "UserNav": {
+    "profile": "プロファイル",
+    "logout": "ログアウト"
   }
 }

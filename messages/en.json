@@ -409,5 +409,21 @@
   "createOrganization": {
     "no_org_name": "Organization name is required.",
     "failed_to_create": "Failed to create an organization."
+  },
+  "ModeToggle": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "OrganizationSwitcher": {
+    "no_org": "No organization found.",
+    "select": "Select an organization",
+    "search": "Search organizations...",
+    "organizations": "Organizations",
+    "create": "Create Organization"
+  },
+  "UserNav": {
+    "profile": "Profile",
+    "logout": "Log Out"
   }
 }

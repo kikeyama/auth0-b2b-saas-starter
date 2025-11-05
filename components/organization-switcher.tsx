@@ -26,6 +26,8 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 
+import { useTranslations } from 'next-intl';
+
 type PopoverTriggerProps = React.ComponentPropsWithoutRef<typeof PopoverTrigger>
 
 interface OrganizationSwitcherProps extends PopoverTriggerProps {
@@ -42,6 +44,9 @@ export function OrganizationSwitcher({
   organizations,
   currentOrgId,
 }: OrganizationSwitcherProps) {
+  // Get translation from messages
+  const t = useTranslations('OrganizationSwitcher');
+
   const [open, setOpen] = useState(false)
   const router = useRouter()
 
@@ -54,7 +59,7 @@ export function OrganizationSwitcher({
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          aria-label="Select an organization"
+          aria-label={t('select')}
           className={cn(
             "flex h-12 w-full min-w-[240px] justify-between rounded-xl border border-border bg-field p-2",
             "hover:border-accent hover:bg-accent/15"
@@ -78,10 +83,10 @@ export function OrganizationSwitcher({
       <PopoverContent className="w-[240px] rounded-xl p-0">
         <Command>
           <CommandList>
-            <CommandInput placeholder="Search organizations..." />
-            <CommandEmpty>No organization found.</CommandEmpty>
+            <CommandInput placeholder={t('search')} />
+            <CommandEmpty>{t('no_org')}</CommandEmpty>
 
-            <CommandGroup heading="Organizations">
+            <CommandGroup heading={t('organizations')}>
               {organizations.map((org) => (
                 <CommandItem
                   key={org.id}
@@ -123,7 +128,7 @@ export function OrganizationSwitcher({
                 className="cursor-pointer"
               >
                 <PlusCircledIcon className="mr-2 size-4" />
-                Create Organization
+                {t('create')}
               </CommandItem>
             </CommandGroup>
           </CommandList>
