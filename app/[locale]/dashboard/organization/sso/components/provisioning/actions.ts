@@ -6,6 +6,8 @@ import { SessionData } from "@auth0/nextjs-auth0/types"
 import { managementClient } from "@/lib/auth0"
 import { withServerActionAuth } from "@/lib/with-server-action-auth"
 
+import { getTranslations } from 'next-intl/server';
+
 const connStrategyToSlug: {
   [key: string]: string
 } = {
@@ -15,6 +17,9 @@ const connStrategyToSlug: {
 
 export const createScimConfig = withServerActionAuth(
   async function createScimConfig(connectionId: string, session: SessionData) {
+    // Get translation from messages
+    const t = await getTranslations('createScimConfig');
+
     // ensure that the connection ID being updated is owned by the organization
     const { data: enabledConnection } =
       await managementClient.organizations.getEnabledConnection({
@@ -24,7 +29,7 @@ export const createScimConfig = withServerActionAuth(
 
     if (!enabledConnection) {
       return {
-        error: "Connection not found.",
+        error: t('connection_not_found'),
       }
     }
 
@@ -42,7 +47,7 @@ export const createScimConfig = withServerActionAuth(
     } catch (error) {
       console.error("failed to create a SCIM configuration", error)
       return {
-        error: "Failed to create a SCIM configuration.",
+        error: t('failed_to_create'),
       }
     }
 
@@ -55,6 +60,9 @@ export const createScimConfig = withServerActionAuth(
 
 export const deleteScimConfig = withServerActionAuth(
   async function deleteScimConfig(connectionId: string, session: SessionData) {
+    // Get translation from messages
+    const t = await getTranslations('deleteScimConfig');
+
     // ensure that the connection ID being updated is owned by the organization
     const { data: enabledConnection } =
       await managementClient.organizations.getEnabledConnection({
@@ -64,7 +72,7 @@ export const deleteScimConfig = withServerActionAuth(
 
     if (!enabledConnection) {
       return {
-        error: "Connection not found.",
+        error: t('connection_not_found'),
       }
     }
 
@@ -79,7 +87,7 @@ export const deleteScimConfig = withServerActionAuth(
     } catch (error) {
       console.error("failed to delete a SCIM configuration", error)
       return {
-        error: "Failed to delete a SCIM configuration.",
+        error: t('failed_to_delete'),
       }
     }
 
@@ -96,11 +104,14 @@ export const updateScimConfig = withServerActionAuth(
     formData: FormData,
     session: SessionData
   ) {
+    // Get translation from messages
+    const t = await getTranslations('updateScimConfig');
+
     const userIdAttribute = formData.get("user_id_attribute") as string
 
     if (!userIdAttribute || typeof userIdAttribute !== "string") {
       return {
-        error: "User ID attribute is required.",
+        error: t('no_user_id_attribute'),
       }
     }
 
@@ -113,7 +124,7 @@ export const updateScimConfig = withServerActionAuth(
 
     if (!enabledConnection) {
       return {
-        error: "Connection not found.",
+        error: t('connection_not_found'),
       }
     }
 
@@ -137,7 +148,7 @@ export const updateScimConfig = withServerActionAuth(
     } catch (error) {
       console.error("failed to update SCIM configuration", error)
       return {
-        error: "Failed to update SCIM configuration.",
+        error: t('failed_to_update'),
       }
     }
 
@@ -150,6 +161,9 @@ export const updateScimConfig = withServerActionAuth(
 
 export const createScimToken = withServerActionAuth(
   async function createScimToken(connectionId: string, session: SessionData) {
+    // Get translation from messages
+    const t = await getTranslations('createScimToken');
+
     // ensure that the connection ID being updated is owned by the organization
     const { data: enabledConnection } =
       await managementClient.organizations.getEnabledConnection({
@@ -159,7 +173,7 @@ export const createScimToken = withServerActionAuth(
 
     if (!enabledConnection) {
       return {
-        error: "Connection not found.",
+        error: t('connection_not_found'),
       }
     }
 
@@ -182,7 +196,7 @@ export const createScimToken = withServerActionAuth(
     } catch (error) {
       console.error("failed to create a SCIM token", error)
       return {
-        error: "Failed to create a SCIM token.",
+        error: t('failed_to_create'),
       }
     }
   },
@@ -197,6 +211,9 @@ export const deleteScimToken = withServerActionAuth(
     tokenId: string,
     session: SessionData
   ) {
+    // Get translation from messages
+    const t = await getTranslations('deleteScimToken');
+
     // ensure that the connection ID being updated is owned by the organization
     const { data: enabledConnection } =
       await managementClient.organizations.getEnabledConnection({
@@ -206,7 +223,7 @@ export const deleteScimToken = withServerActionAuth(
 
     if (!enabledConnection) {
       return {
-        error: "Connection not found.",
+        error: t('connection_not_found'),
       }
     }
 
@@ -222,7 +239,7 @@ export const deleteScimToken = withServerActionAuth(
     } catch (error) {
       console.error("failed to delete a SCIM token", error)
       return {
-        error: "Failed to delete a SCIM token.",
+        error: t('failed_to_delete'),
       }
     }
 
