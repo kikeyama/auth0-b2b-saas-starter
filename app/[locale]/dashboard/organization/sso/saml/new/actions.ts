@@ -110,7 +110,7 @@ export const createConnection = withServerActionAuth(
 
       revalidatePath("/dashboard/organization/sso")
     } catch (error) {
-      console.error(t('failed_to_create'), error)
+      console.error("failed to create the SSO connection", error)
       return {
         error: t('failed_to_create'),
       }
@@ -156,7 +156,7 @@ export const deleteConnection = withServerActionAuth(
 
       return {}
     } catch (error) {
-      console.error(t('failed_to_delete'), error)
+      console.error("failed to delete the SSO connection", error)
       return {
         error: t('failed_to_delete'),
       }

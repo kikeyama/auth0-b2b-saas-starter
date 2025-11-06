@@ -24,31 +24,31 @@ export const updateConnection = withServerActionAuth(
 
     if (!displayName || typeof displayName !== "string") {
       return {
-        error: "Connection name is required.",
+        error: t('no_name'),
       }
     }
 
     if (!discoveryUrl || typeof discoveryUrl !== "string") {
       return {
-        error: "Discovery URL is required.",
+        error: t('no_discovery_url'),
       }
     }
 
     if (!clientId || typeof clientId !== "string") {
       return {
-        error: "Client ID is required.",
+        error: t('no_client_id'),
       }
     }
 
     if (!type || typeof type !== "string") {
       return {
-        error: "Type is required.",
+        error: t('no_type'),
       }
     }
 
     if (!scope || typeof scope !== "string") {
       return {
-        error: "Scope is required.",
+        error: t('no_scopes'),
       }
     }
 
@@ -57,7 +57,7 @@ export const updateConnection = withServerActionAuth(
       typeof assignMembershipOnLogin !== "string"
     ) {
       return {
-        error: "Auto-membership is required.",
+        error: t('no_auto_membership'),
       }
     }
 
@@ -72,7 +72,7 @@ export const updateConnection = withServerActionAuth(
 
       if (!verified) {
         return {
-          error: `The domain ${domain} is not verified.`,
+          error: t('domain_error', {domain: domain}),
         }
       }
     }
@@ -86,7 +86,7 @@ export const updateConnection = withServerActionAuth(
 
     if (!enabledConnection) {
       return {
-        error: "Connection not found.",
+        error: t('connection_not_found'),
       }
     }
 
@@ -122,7 +122,7 @@ export const updateConnection = withServerActionAuth(
     } catch (error) {
       console.error("failed to update the SSO connection", error)
       return {
-        error: "Failed to update the SSO connection.",
+        error: t('failed_to_update'),
       }
     }
 

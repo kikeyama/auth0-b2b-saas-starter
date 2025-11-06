@@ -6,9 +6,11 @@ import { useParams, useSelectedLayoutSegment } from "next/navigation"
 import { cn } from "@/lib/utils"
 
 export default function SsoNavLink({
+  strategy,
   slug,
   children,
 }: {
+  strategy: string,
   slug: string
   children: React.ReactNode
 }) {
@@ -18,7 +20,7 @@ export default function SsoNavLink({
 
   return (
     <Link
-      href={`/dashboard/organization/sso/oidc/edit/${connectionId}/${slug}`}
+      href={`/dashboard/organization/sso/${strategy}/edit/${connectionId}/${slug}`}
       className={cn(
         isActive
           ? "font-semibold text-primary underline underline-offset-[12px]"

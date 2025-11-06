@@ -24,6 +24,8 @@ import { SubmitButton } from "@/components/submit-button"
 import { AddDomainDialog } from "../../../../components/add-domain-dialog"
 import { updateConnection } from "./actions"
 
+import { useTranslations } from 'next-intl';
+
 const CALLBACK_URL = `https://${process.env.NEXT_PUBLIC_AUTH0_DOMAIN}/login/callback`
 
 export interface OidcConnection {
@@ -50,6 +52,9 @@ export function UpdateOidcConnectionForm({
   connection,
   domainVerificationToken,
 }: Props) {
+  // Get translation from messages
+  const t = useTranslations('UpdateOidcConnectionForm');
+
   const [type, setType] = useState<string>(connection.options.type)
   const [domains, setDomains] = useState<string[]>(
     connection.options.domainAliases || []
@@ -64,19 +69,19 @@ export function UpdateOidcConnectionForm({
           if (error) {
             toast.error(error)
           } else {
-            toast.success("The connection has been updated.")
+            toast.success(t('success'))
           }
         }}
       >
         <CardHeader>
-          <CardTitle>Update Connection Configuration</CardTitle>
+          <CardTitle>{t('title')}</CardTitle>
           <CardDescription>
-            Update the configuration for your OpenID Connect connection.
+            {t('description')}
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4">
           <div className="grid w-full items-center gap-2">
-            <Label htmlFor="display_name">Connection Name</Label>
+            <Label htmlFor="display_name">{t('name')}</Label>
             <Input
               id="display_name"
               name="display_name"
@@ -85,12 +90,12 @@ export function UpdateOidcConnectionForm({
               defaultValue={connection.displayName}
             />
             <p className="text-sm text-muted-foreground">
-              Identifier: <Code>{connection.name}</Code>
+              {t('identifier')}: <Code>{connection.name}</Code>
             </p>
           </div>
 
           <div className="grid w-full items-center gap-2">
-            <Label htmlFor="discovery_url">Discovery URL</Label>
+            <Label htmlFor="discovery_url">{t('discovery_url')}</Label>
             <Input
               id="discovery_url"
               name="discovery_url"
@@ -101,7 +106,7 @@ export function UpdateOidcConnectionForm({
           </div>
 
           <div className="grid w-full items-center gap-2">
-            <Label htmlFor="type">Type</Label>
+            <Label htmlFor="type">{t('type.title')}</Label>
             <RadioGroup
               id="type"
               name="type"
@@ -110,26 +115,6 @@ export function UpdateOidcConnectionForm({
               value={type}
               onValueChange={setType}
             >
-              <div>
-                <RadioGroupItem
-                  value="front_channel"
-                  id="front_channel"
-                  className="peer sr-only"
-                />
-                <Label
-                  htmlFor="front_channel"
-                  className="flex h-full rounded-md border-2 border-muted bg-popover p-4 hover:bg-hover hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
-                >
-                  <div className="space-y-1.5">
-                    <div>Front Channel</div>
-                    <div className="leading-normal text-muted-foreground">
-                      Uses <Code>response_mode=form_post</Code> and{" "}
-                      <Code>response_type=id_token</Code>.
-                    </div>
-                  </div>
-                </Label>
-              </div>
-
               <div>
                 <RadioGroupItem
                   value="back_channel"
@@ -141,9 +126,31 @@ export function UpdateOidcConnectionForm({
                   className="flex h-full rounded-md border-2 border-muted bg-popover p-4 hover:bg-hover hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
                 >
                   <div className="space-y-1.5">
-                    <div>Back Channel</div>
+                    <div>{t('type.back_channel.title')}</div>
                     <div className="leading-normal text-muted-foreground">
-                      Uses <Code>response_type=code</Code>.
+                      {t.rich('type.back_channel.description', {response_type: (chunks) => <Code>{chunks}</Code>})}
+                    </div>
+                  </div>
+                </Label>
+              </div>
+
+              <div>
+                <RadioGroupItem
+                  value="front_channel"
+                  id="front_channel"
+                  className="peer sr-only"
+                />
+                <Label
+                  htmlFor="front_channel"
+                  className="flex h-full rounded-md border-2 border-muted bg-popover p-4 hover:bg-hover hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
+                >
+                  <div className="space-y-1.5">
+                    <div>{t('type.front_channel.title')}</div>
+                    <div className="leading-normal text-muted-foreground">
+                      {t.rich('type.front_channel.description', {
+                        response_mode: (chunks) => <Code>{chunks}</Code>,
+                        response_type: (chunks) => <Code>{chunks}</Code>
+                      })}
                     </div>
                   </div>
                 </Label>
@@ -152,7 +159,7 @@ export function UpdateOidcConnectionForm({
           </div>
 
           <div className="grid w-full items-center gap-2">
-            <Label htmlFor="client_id">Client ID</Label>
+            <Label htmlFor="client_id">{t('client_id')}</Label>
             <Input
               id="client_id"
               name="client_id"
@@ -164,7 +171,7 @@ export function UpdateOidcConnectionForm({
 
           {type === "back_channel" && (
             <div className="grid w-full items-center gap-2">
-              <Label htmlFor="client_secret">Client Secret</Label>
+              <Label htmlFor="client_secret">{t('client_secret')}</Label>
               <Input
                 id="client_secret"
                 name="client_secret"
@@ -176,7 +183,7 @@ export function UpdateOidcConnectionForm({
           )}
 
           <div className="grid w-full items-center gap-2">
-            <Label htmlFor="scope">Scopes</Label>
+            <Label htmlFor="scope">{t('scopes.title')}</Label>
             <Input
               id="scope"
               name="scope"
@@ -185,13 +192,14 @@ export function UpdateOidcConnectionForm({
               defaultValue={connection.options.scope}
             />
             <p className="text-sm text-muted-foreground">
-              A space-separated list of scopes. Must contain <Code>openid</Code>
-              .
+              {t.rich('scopes.description', {
+                openid: (chunks) => <Code>{chunks}</Code>
+              })}
             </p>
           </div>
 
           <div className="grid w-full items-center gap-2">
-            <Label htmlFor="domains">Domains</Label>
+            <Label htmlFor="domains">{t('domains.title')}</Label>
             <Input
               id="domains"
               name="domains"
@@ -219,7 +227,7 @@ export function UpdateOidcConnectionForm({
               ))
             ) : (
               <div className="rounded-md border border-dashed p-4 text-sm text-muted-foreground">
-                <p>No domains have been added yet.</p>
+                <p>{t('domains.alert')}</p>
               </div>
             )}
             <div>
@@ -233,10 +241,9 @@ export function UpdateOidcConnectionForm({
 
           <Alert>
             <InfoCircledIcon className="size-4" />
-            <AlertTitle>Callback URL</AlertTitle>
+            <AlertTitle>{t('callback_url.title')}</AlertTitle>
             <AlertDescription>
-              You may need to configure the OIDC issuer with the following
-              callback URL:
+              {t('callback_url.description')}
               <div className="mt-2 flex space-x-2">
                 <Input className="font-mono" value={CALLBACK_URL} readOnly />
                 <Button size="icon" variant="outline" type="button">
@@ -244,7 +251,7 @@ export function UpdateOidcConnectionForm({
                     className="size-4"
                     onClick={async () => {
                       await navigator.clipboard.writeText(CALLBACK_URL)
-                      toast.success("Callback URL copied to clipboard.")
+                      toast.success(t('callback_url.success'))
                     }}
                   />
                 </Button>
@@ -255,7 +262,7 @@ export function UpdateOidcConnectionForm({
           <Separator />
 
           <div className="grid w-full items-center gap-2">
-            <Label htmlFor="assign_membership_on_login">Auto-Membership</Label>
+            <Label htmlFor="assign_membership_on_login">{t('auto_membership.title')}</Label>
             <RadioGroup
               id="assign_membership_on_login"
               name="assign_membership_on_login"
@@ -275,10 +282,9 @@ export function UpdateOidcConnectionForm({
                   className="flex h-full rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
                 >
                   <div className="space-y-1.5">
-                    <div>Enable Auto-Membership</div>
+                    <div>{t('auto_membership.enable.title')}</div>
                     <div className="leading-normal text-muted-foreground">
-                      All users logging in with this connection will be
-                      automatically added as members of this organization.
+                      {t('auto_membership.enable.description')}
                     </div>
                   </div>
                 </Label>
@@ -295,10 +301,9 @@ export function UpdateOidcConnectionForm({
                   className="flex h-full rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
                 >
                   <div className="space-y-1.5">
-                    <div>Disable Auto-Membership</div>
+                    <div>{t('auto_membership.disable.title')}</div>
                     <div className="leading-normal text-muted-foreground">
-                      All users logging in with this connection will not be
-                      added as members to this organization.
+                      {t('auto_membership.disable.description')}
                     </div>
                   </div>
                 </Label>
@@ -307,7 +312,7 @@ export function UpdateOidcConnectionForm({
           </div>
         </CardContent>
         <CardFooter className="flex justify-end">
-          <SubmitButton>Update Connection</SubmitButton>
+          <SubmitButton>{t('button')}</SubmitButton>
         </CardFooter>
       </form>
     </Card>

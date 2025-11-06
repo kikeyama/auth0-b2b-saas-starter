@@ -34,6 +34,8 @@ import { Label } from "@/components/ui/label"
 
 import { verifyDomain } from "../actions"
 
+import { useTranslations } from 'next-intl';
+
 interface Props {
   domains: string[]
   setDomains: (domains: string[]) => void
@@ -45,6 +47,9 @@ export function AddDomainDialog({
   setDomains,
   domainVerificationToken,
 }: Props) {
+  // Get translation from messages
+  const t = useTranslations('AddDomainDialog');
+
   const [domainVerified, setDomainVerified] = useState(false)
   const [domain, setDomain] = useState("")
   const [checkingVerificationStatus, setCheckingVerificationStatus] =
@@ -64,28 +69,29 @@ export function AddDomainDialog({
     >
       <DialogTrigger asChild>
         <Button type="button" variant="outline" size="sm">
-          <PlusIcon className="mr-1 size-3" /> Add Domain
+          <PlusIcon className="mr-1 size-3" /> {t('button')}
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
-          <DialogTitle>Add a Domain</DialogTitle>
+          <DialogTitle>{t('title')}</DialogTitle>
           <DialogDescription>
-            Add a verified domain so that your organization&apos;s end-users can
-            be forwarded directly to this IdP to log in.{" "}
-            <a
-              className="underline underline-offset-4"
-              href={`https://auth0.com/docs/authenticate/login/auth0-universal-login/identifier-first#define-home-realm-discovery-identity-providers`}
-              target="_blank"
-            >
-              Learn more
-            </a>
-            .
+            {t.rich('description', {
+              learnmore: (chunks) => (
+                <a
+                  className="underline underline-offset-4"
+                  href={`https://auth0.com/docs/authenticate/login/auth0-universal-login/identifier-first#define-home-realm-discovery-identity-providers`}
+                  target="_blank"
+                >
+                  {chunks}
+                </a>
+              )
+            })}
           </DialogDescription>
         </DialogHeader>
         <div className="space-y-4">
           <div className="grid gap-2">
-            <Label htmlFor="domain">Domain</Label>
+            <Label htmlFor="domain">{t('domain')}</Label>
             <Input
               id="domain"
               name="domain"
@@ -99,15 +105,15 @@ export function AddDomainDialog({
 
           <Card>
             <CardHeader>
-              <CardTitle>Verification</CardTitle>
+              <CardTitle>{t('verification.title')}</CardTitle>
               <CardDescription>
-                Add the following TXT record to your DNS configuration
+                {t('verification.description')}
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-2">
                 <div>
-                  <Label>Name</Label>
+                  <Label>{t('verification.name.title')}</Label>
                   <div className="flex space-x-2">
                     <Input className="font-mono" value="@ (root)" readOnly />
                     <Button size="icon" variant="outline" type="button">
@@ -115,7 +121,7 @@ export function AddDomainDialog({
                         className="size-4"
                         onClick={async () => {
                           await navigator.clipboard.writeText("@")
-                          toast.success("TXT record name copied to clipboard.")
+                          toast.success(t('verification.name.copied'))
                         }}
                       />
                     </Button>
@@ -123,7 +129,7 @@ export function AddDomainDialog({
                 </div>
 
                 <div>
-                  <Label>Value</Label>
+                  <Label>{t('verification.value.title')}</Label>
                   <div className="flex space-x-2">
                     <Input
                       className="font-mono"
@@ -137,7 +143,7 @@ export function AddDomainDialog({
                           await navigator.clipboard.writeText(
                             `${DOMAIN_VERIFICATION_RECORD_IDENTIFIER}=${domainVerificationToken}`
                           )
-                          toast.success("TXT record value copied to clipboard.")
+                          toast.success(t('verification.value.copied'))
                         }}
                       />
                     </Button>
@@ -157,7 +163,7 @@ export function AddDomainDialog({
                     toast.error(result.error)
                   } else if ("verified" in result && result.verified) {
                     setDomainVerified(result.verified)
-                    toast.success("Domain has been verified.")
+                    toast.success(t('verification.success'))
                   }
 
                   setCheckingVerificationStatus(false)
@@ -165,7 +171,7 @@ export function AddDomainDialog({
               >
                 {domainVerified ? (
                   <>
-                    <CheckIcon className="mr-2 size-4" /> Verified
+                    <CheckIcon className="mr-2 size-4" /> {t('verification.verified')}
                   </>
                 ) : (
                   <>
@@ -175,7 +181,7 @@ export function AddDomainDialog({
                         checkingVerificationStatus ? "animate-spin" : ""
                       )}
                     />{" "}
-                    {checkingVerificationStatus ? "Checking..." : "Check Again"}
+                    {checkingVerificationStatus ? t('verification.checking') : t('verification.check_again')}
                   </>
                 )}
               </Button>
@@ -198,7 +204,7 @@ export function AddDomainDialog({
               setShowDomainVerificationDialog(false)
             }}
           >
-            Add Domain
+            {t('button')}
           </Button>
         </DialogFooter>
       </DialogContent>

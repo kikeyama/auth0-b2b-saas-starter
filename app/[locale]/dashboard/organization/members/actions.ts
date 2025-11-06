@@ -7,13 +7,18 @@ import { managementClient } from "@/lib/auth0"
 import { Role, roles } from "@/lib/roles"
 import { withServerActionAuth } from "@/lib/with-server-action-auth"
 
+import { getTranslations } from 'next-intl/server';
+
 export const createInvitation = withServerActionAuth(
   async function createInvitation(formData: FormData, session: SessionData) {
+    // Get translation from messages
+    const t = await getTranslations('createInvitation');
+
     const email = formData.get("email")
 
     if (!email || typeof email !== "string") {
       return {
-        error: "Email address is required.",
+        error: t('no_email_address'),
       }
     }
 
@@ -25,7 +30,7 @@ export const createInvitation = withServerActionAuth(
       !["member", "admin"].includes(role)
     ) {
       return {
-        error: "Role is required and must be either 'member' or 'admin'.",
+        error: t('role_error'),
       }
     }
 
@@ -54,7 +59,7 @@ export const createInvitation = withServerActionAuth(
     } catch (error) {
       console.error("failed to create invitation", error)
       return {
-        error: "Failed to create invitation.",
+        error: t('failed_to_create'),
       }
     }
 
@@ -67,6 +72,9 @@ export const createInvitation = withServerActionAuth(
 
 export const revokeInvitation = withServerActionAuth(
   async function revokeInvitation(invitationId: string, session: SessionData) {
+    // Get translation from messages
+    const t = await getTranslations('revokeInvitation');
+
     try {
       await managementClient.organizations.deleteInvitation({
         id: session.user.org_id!,
@@ -77,7 +85,7 @@ export const revokeInvitation = withServerActionAuth(
     } catch (error) {
       console.error("failed to revoke invitation", error)
       return {
-        error: "Failed to revoke invitation.",
+        error: t('failed_to_revoke'),
       }
     }
 
@@ -90,9 +98,12 @@ export const revokeInvitation = withServerActionAuth(
 
 export const removeMember = withServerActionAuth(
   async function removeMember(userId: string, session: SessionData) {
+    // Get translation from messages
+    const t = await getTranslations('removeMember');
+
     if (userId === session.user.sub) {
       return {
-        error: "You cannot remove yourself from an organization.",
+        error: t('cannot_remove_yourself'),
       }
     }
 
@@ -110,7 +121,7 @@ export const removeMember = withServerActionAuth(
     } catch (error) {
       console.error("failed to remove member", error)
       return {
-        error: "Failed to remove member.",
+        error: t('failed_to_remove'),
       }
     }
 
@@ -123,9 +134,12 @@ export const removeMember = withServerActionAuth(
 
 export const updateRole = withServerActionAuth(
   async function updateRole(userId: string, role: Role, session: SessionData) {
+    // Get translation from messages
+    const t = await getTranslations('updateRole');
+
     if (userId === session.user.sub) {
       return {
-        error: "You cannot update your own role.",
+        error: t('cannot_update_your_own'),
       }
     }
 
@@ -135,7 +149,7 @@ export const updateRole = withServerActionAuth(
       !["member", "admin"].includes(role)
     ) {
       return {
-        error: "Role is required and must be either 'member' or 'admin'.",
+        error: t('role_error'),
       }
     }
 
@@ -178,7 +192,7 @@ export const updateRole = withServerActionAuth(
     } catch (error) {
       console.error("failed to update member's role", error)
       return {
-        error: "Failed to update member's role.",
+        error: t('failed_to_update'),
       }
     }
 

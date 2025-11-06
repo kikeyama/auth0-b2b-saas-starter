@@ -66,6 +66,10 @@
     "org_slug_description": "変更できません。",
     "button": "保存"
   },
+  "updateDisplayName": {
+    "no_display_name": "表示名は必須です。",
+    "failed_to_update": "組織の表示名の更新に失敗しました。"
+  },
   "Members": {
     "title": "メンバー管理",
     "description": "組織のメンバーを管理"
@@ -98,6 +102,23 @@
     "member": "メンバー",
     "button": "送信"
   },
+  "createInvitation": {
+    "no_email_address": "メールアドレスは必須です。",
+    "role_error": "ロールは必須であり、 member または admin のいずれかでなければなりません。",
+    "failed_to_create": "招待の作成に失敗しました。"
+  },
+  "revokeInvitation": {
+    "failed_to_revoke": "招待の取り消しに失敗しました。"
+  },
+  "removeMember": {
+    "cannot_remove_yourself": "自分自身を組織から離脱することはできません。",
+    "failed_to_remove": "メンバーの削除に失敗しました。"
+  },
+  "updateRole": {
+    "cannot_update_your_own": "自分自身のロールは更新できません。",
+    "role_error": "ロールは必須であり、 member または admin のいずれかでなければなりません。",
+    "failed_to_update": "メンバーのロールの更新に失敗しました。"
+  },
   "SSO": {
     "title": "シングルサインオン",
     "description": "組織のSSOを設定"
@@ -126,6 +147,10 @@
     "add": "接続を追加",
     "oidc": "OIDC",
     "saml": "SAML"
+  },
+  "verifyDomain": {
+    "no_domain": "ドメインは必須です。",
+    "failed_to_validate": "ドメインの検証に失敗しました。"
   },
   "CreateOidcConnection": {
     "back": "接続設定に戻る"
@@ -191,6 +216,63 @@
     "connection_not_found": "接続が見つかりません。",
     "failed_to_delete": "SSO接続の削除に失敗しました。"
   },
+  "UpdateOidcConnectionForm": {
+    "title": "接続設定を更新",
+    "description": "OpenID Connect接続の設定を更新",
+    "name": "接続名",
+    "identifier": "識別子",
+    "discovery_url": "ディスカバリーURL",
+    "type": {
+      "title": "種別",
+      "back_channel": {
+        "title": "バックチャネル",
+        "description": "<response_type>response_type=code</response_type> を使用"
+      },
+      "front_channel": {
+        "title": "フロントチャネル",
+        "description": "<response_mode>response_mode=form_post</response_mode> と <response_type>response_type=id_token</response_type> を使用"
+      }
+    },
+    "client_id": "クライアントID",
+    "client_secret": "クライアントシークレット",
+    "scopes": {
+      "title": "スコープ",
+      "description": "スコープをスペース区切りのリストで記載（必須: <openid>openid</openid>）"
+    },
+    "domains": {
+      "title": "ドメイン",
+      "alert": "ドメインが追加されていません。"
+    },
+    "callback_url": {
+      "title": "コールバックURL",
+      "description": "以下のコールバックURLでOIDC発行者を設定する必要がある場合があります:",
+      "success": "コールバックURLがクリップボードにコピーされました。"
+    },
+    "auto_membership": {
+      "title": "自動メンバーシップ",
+      "enable": {
+        "title": "自動メンバーシップを有効にする",
+        "description": "この接続でログインするすべてのユーザーは、自動的にこの組織のメンバーとして追加されます。"
+      },
+      "disable": {
+        "title": "自動メンバーシップを無効にする",
+        "description": "この接続でログインするすべてのユーザーは、この組織のメンバーとして追加されません。"
+      }
+    },
+    "button": "接続を更新",
+    "success": "接続が更新されました。"
+  },
+  "createOidcConnection": {
+    "no_name": "接続名は必須です。",
+    "no_discovery_url": "ディスカバリーURLは必須です。",
+    "no_client_id": "クライアントIDは必須です。",
+    "no_type": "種別は必須です。",
+    "no_scopes": "スコープは必須です。",
+    "no_auto_membership": "自動メンバーシップは必須です。",
+    "domain_error": "ドメイン {domain} は正しくありません。",
+    "connection_not_found": "接続が見つかりません。",
+    "failed_to_create": "SSO接続の更新に失敗しました。"
+  },
   "CreateSamlConnection": {
     "back": "接続設定に戻る"
   },
@@ -246,6 +328,154 @@
     "no_connection_id": "接続IDは必須です。",
     "connection_not_found": "接続が見つかりません。",
     "failed_to_delete": "SSO接続の削除に失敗しました。"
+  },
+  "EditSamlConnectionLayout": {
+    "back": "接続設定に戻る",
+    "settings": "設定",
+    "provisioning": "プロビジョニング"
+  },
+  "UpdateSamlConnectionForm": {
+    "title": "接続設定を更新",
+    "description": "SAML接続の設定を更新",
+    "name": "接続名",
+    "identifier": "識別子",
+    "sign_in_url": "サインインURL",
+    "sign_out_url": "サインアウトURL",
+    "certificate": "X509証明書",
+    "user_id_attribute": "ユーザーID属性",
+    "protocol_binding": "プロトコルバインディング",
+    "http_redirect": "HTTP リダイレクト",
+    "http_post": "HTTP POST",
+    "domains": {
+      "title": "ドメイン",
+      "alert": "ドメインが追加されていません。"
+    },
+    "sign_request": {
+      "title": "署名リクエスト",
+      "description": "リクエストは <rsa_sha256>RSA-SHA256</rsa_sha256> で署名されます。 <download>証明書をダウンロード</download> して、リクエスト署名を検証するためにIDプロバイダーを設定してください。"
+    },
+    "post_back_url": {
+      "title": "ポストバックURL",
+      "description": "以下のポストバックURLを使用して、SAML IDプロバイダーを設定する必要があります:",
+      "success": "ポストバックURLがクリップボードにコピーされました。"
+    },
+    "auto_membership": {
+      "title": "自動メンバーシップ",
+      "enable": {
+        "title": "自動メンバーシップを有効にする",
+        "description": "この接続でログインするすべてのユーザーは、自動的にこの組織のメンバーとして追加されます。"
+      },
+      "disable": {
+        "title": "自動メンバーシップを無効にする",
+        "description": "この接続でログインするすべてのユーザーは、この組織のメンバーとして追加されません。"
+      }
+    },
+    "button": "接続を更新",
+    "success": "接続が更新されました。"
+  },
+  "createSamlConnection": {
+    "no_name": "接続名は必須です。",
+    "no_signin_url": "サインインURLは必須です。",
+    "no_certificate": "証明書は必須です。",
+    "no_protocol_binding": "プロトコルバインディングは必須です。",
+    "no_auto_membership": "自動メンバーシップは必須です。",
+    "domain_error": "ドメイン {domain} は正しくありません。",
+    "connection_not_found": "接続が見つかりません。",
+    "failed_to_update": "SSO接続の更新に失敗しました。"
+  },
+  "EditOidcConnectionLayout": {
+    "back": "接続設定に戻る",
+    "settings": "設定",
+    "provisioning": "プロビジョニング"
+  },
+  "AddDomainDialog": {
+    "button": "ドメイン追加",
+    "title": "ドメインを追加",
+    "description": "組織のエンドユーザーが直接このIDプロバイダーに転送されログインできるように、認証済みドメインを追加してください。<learnmore>詳細はこちら</learnmore>",
+    "domain": "ドメイン",
+    "verification": {
+      "title": "検証",
+      "description": "DNS設定に以下のTXTレコードを追加してください",
+      "name": {
+        "title": "名前",
+        "copied": "TXTレコード名がクリップボードにコピーされました。"
+      },
+      "value": {
+        "title": "値",
+        "copied": "TXTレコードの値がクリップボードにコピーされました。"
+      },
+      "success": "ドメインが検証されました。",
+      "verified": "検証済み",
+      "checking": "確認中...",
+      "check_again": "もう一度確認"
+    }
+  },
+  "ScimForm": {
+    "title": "SCIMでユーザープロファイルを同期",
+    "description": "SCIM 2.0プロトコルを使用して、IDプロバイダーまたはその他のSCIMクライアントがユーザー プロファイルを組織に同期することを許可します。",
+    "enabled": "SCIMが有効化されました。",
+    "disabled": "SCIMが無効化されました。",
+    "success": "SCIM設定が更新されました。",
+    "user_id_attribute": {
+      "title": "ユーザーID属性",
+      "description": "ユーザーを一意に識別する属性"
+    },
+    "tokens": {
+      "title": "トークン",
+      "table": {
+        "id": "ID",
+        "last_used_at": "最終使用日",
+        "created_at": "作成日",
+        "never": "未使用",
+        "created_date": "{createdDate, date, ::yyyyMMMd}",
+        "delete_token": {
+          "title": "トークンを削除しますか？",
+          "description": "このトークンを削除してもよろしいですか？この操作は元に戻せません。",
+          "cancel": "キャンセル",
+          "submit": "トークンを削除",
+          "success": "トークンは削除されました。"
+        }
+      },
+      "no_tokens": "トークンはまだ生成されていません。",
+      "generate_token": {
+        "button": "トークンを生成",
+        "success": "トークンが作成されました。"
+      }
+    },
+    "scim_endpoint": {
+      "title": "SCIMエンドポイントURL",
+      "description": "このURLをコピーし、IDプロバイダーまたはその他のSCIMクライアントに提供してください。",
+      "copied": "SCIMエンドポイントURLがクリップボードにコピーされました。"
+    },
+    "button": "設定を更新",
+    "dialog": {
+      "title": "SCIM Bearerトークン",
+      "description": "トークンをコピーし、安全な場所に保存してください。このトークンは再度表示されません。",
+      "token": "トークン",
+      "copied": "SCIMトークンがクリップボードにコピーされました。",
+      "close": "閉じる"
+    }
+  },
+  "createScimConfig": {
+    "connection_not_found": "接続が見つかりません。",
+    "failed_to_create": "SCIM設定の作成に失敗しました。"
+  },
+  "deleteScimConfig": {
+    "connection_not_found": "接続が見つかりません。",
+    "failed_to_create": "SCIM設定の削除に失敗しました。"
+  },
+  "updateScimConfig": {
+    "no_user_id_attribute": "User ID属性は必須です。",
+    "connection_not_found": "接続が見つかりません。",
+    "failed_to_update": "SCIM設定の更新に失敗しました。"
+  },
+  "createScimToken": {
+    "connection_not_found": "接続が見つかりません。",
+    "failed_to_create": "SCIMトークンの作成に失敗しました。"
+  },
+  "deleteScimToken": {
+    "connection_not_found": "接続が見つかりません。",
+    "failed_to_create": "SCIMトークンの削除に失敗しました。"
   },
   "SecurityPolicies": {
     "title": "セキュリティポリシー",

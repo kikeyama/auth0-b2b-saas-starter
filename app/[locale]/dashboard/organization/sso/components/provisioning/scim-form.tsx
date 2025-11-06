@@ -64,6 +64,8 @@ import {
   updateScimConfig,
 } from "./actions"
 
+import { useTranslations, useNow, useFormatter } from 'next-intl';
+
 interface Props {
   scimConfig: {
     userIdAttribute: string
@@ -76,6 +78,10 @@ interface Props {
 }
 
 export function ScimForm({ scimConfig, scimTokens }: Props) {
+  // Get translation from messages
+  const t = useTranslations('ScimForm');
+  const i18nFormat = useFormatter();
+
   const [generatingToken, setGeneratingToken] = useState(false)
   const [showTokenDialog, setShowTokenDialog] = useState(false)
   const [token, setToken] = useState("")
@@ -88,10 +94,9 @@ export function ScimForm({ scimConfig, scimTokens }: Props) {
         <CardHeader>
           <div className="flex justify-between">
             <div className="space-y-2">
-              <CardTitle>Sync user profiles using SCIM</CardTitle>
+              <CardTitle>{t('title')}</CardTitle>
               <CardDescription>
-                Allow an identity provider or other SCIM client to sync user
-                profiles to your organization using the SCIM 2.0 protocol.
+                {t('description')}
               </CardDescription>
             </div>
             <div>
@@ -105,14 +110,14 @@ export function ScimForm({ scimConfig, scimTokens }: Props) {
                       return toast.error(error)
                     }
 
-                    toast.success("SCIM has been enabled.")
+                    toast.success(t('enabled'))
                   } else {
                     const { error } = await deleteScimConfig(connectionId)
                     if (error) {
                       return toast.error(error)
                     }
 
-                    toast.success("SCIM has been disabled.")
+                    toast.success(t('disabled'))
                   }
                 }}
               />
@@ -132,12 +137,12 @@ export function ScimForm({ scimConfig, scimTokens }: Props) {
                 return
               }
 
-              toast.success("SCIM configuration updated successfully.")
+              toast.success(t('success'))
             }}
           >
             <CardContent className="grid gap-4">
               <div className="grid w-full items-center gap-2">
-                <Label htmlFor="user_id_attribute">User ID Attribute</Label>
+                <Label htmlFor="user_id_attribute">{t('user_id_attribute.title')}</Label>
                 <Input
                   id="user_id_attribute"
                   name="user_id_attribute"
@@ -146,19 +151,19 @@ export function ScimForm({ scimConfig, scimTokens }: Props) {
                   defaultValue={scimConfig?.userIdAttribute || "externalId"}
                 />
                 <p className="text-sm text-muted-foreground">
-                  The attribute that uniquely identifies a user
+                  {t('user_id_attribute.description')}
                 </p>
               </div>
               <div className="grid w-full items-center gap-2">
-                <Label htmlFor="generate_tokens">Tokens</Label>
+                <Label htmlFor="generate_tokens">{t('tokens.title')}</Label>
                 {scimTokens.length > 0 ? (
                   <div>
                     <Table>
                       <TableHeader>
                         <TableRow>
-                          <TableHead>ID</TableHead>
-                          <TableHead>Last Used At</TableHead>
-                          <TableHead>Created At</TableHead>
+                          <TableHead>{t('tokens.table.id')}</TableHead>
+                          <TableHead>{t('tokens.table.last_used_at')}</TableHead>
+                          <TableHead>{t('tokens.table.created_at')}</TableHead>
                           <TableHead></TableHead>
                         </TableRow>
                       </TableHeader>
@@ -170,11 +175,18 @@ export function ScimForm({ scimConfig, scimTokens }: Props) {
                             </TableCell>
                             <TableCell>
                               {token.lastUsedAt
-                                ? formatDistance(token.lastUsedAt, new Date())
-                                : "Never"}
+                                ? i18nFormat.relativeTime(token.lastUsedAt, useNow())
+//                                ? formatDistance(token.lastUsedAt, new Date())
+                                : t('tokens.table.never')}
                             </TableCell>
                             <TableCell>
-                              {format(token.createdAt, "MMM d, yyyy")}
+                              {/* t('tokens.table.created_date', {createdDate: new Date(token.createdAt)}) */}
+                              {i18nFormat.dateTime(new Date(token.createdAt), {
+                                year: 'numeric',
+                                month: 'short',
+                                day: 'numeric'
+                              })}
+                              {/* format(token.createdAt, "MMM d, yyyy") */}
                             </TableCell>
                             <TableCell className="flex justify-end">
                               <AlertDialog>
@@ -190,16 +202,15 @@ export function ScimForm({ scimConfig, scimTokens }: Props) {
                                 <AlertDialogContent>
                                   <AlertDialogHeader>
                                     <AlertDialogTitle>
-                                      Delete token?
+                                      {t('tokens.table.delete_token.title')}
                                     </AlertDialogTitle>
                                     <AlertDialogDescription>
-                                      Are you sure you would like to delete this
-                                      token? This action cannot be undone.
+                                      {t('tokens.table.delete_token.description')}
                                     </AlertDialogDescription>
                                   </AlertDialogHeader>
                                   <AlertDialogFooter>
                                     <AlertDialogCancel>
-                                      Cancel
+                                      {t('tokens.table.delete_token.cancel')}
                                     </AlertDialogCancel>
                                     <AlertDialogAction
                                       onClick={async () => {
@@ -211,11 +222,11 @@ export function ScimForm({ scimConfig, scimTokens }: Props) {
                                           return toast.error(error)
                                         }
                                         toast.success(
-                                          "The token has been deleted."
+                                          t('tokens.table.delete_token.success')
                                         )
                                       }}
                                     >
-                                      Delete token
+                                      {t('tokens.table.delete_token.submit')}
                                     </AlertDialogAction>
                                   </AlertDialogFooter>
                                 </AlertDialogContent>
@@ -229,8 +240,11 @@ export function ScimForm({ scimConfig, scimTokens }: Props) {
                 ) : (
                   <div className="space-y-2">
                     <div className="rounded-md border border-dashed p-4 text-sm text-muted-foreground">
-                      <p>No tokens have been generated yet.</p>
+                      <p>{t('tokens.no_tokens')}</p>
                     </div>
+                  </div>
+                )}
+                  <div className="space-y-2">
                     <div>
                       <Button
                         id="generate_tokens"
@@ -248,7 +262,7 @@ export function ScimForm({ scimConfig, scimTokens }: Props) {
 
                           setGeneratingToken(false)
                           toast.success(
-                            "The token has been created successfully."
+                            t('tokens.generate_token.success')
                           )
 
                           // @ts-ignore
@@ -262,18 +276,16 @@ export function ScimForm({ scimConfig, scimTokens }: Props) {
                             generatingToken && "animate-spin"
                           )}
                         />{" "}
-                        Generate Token
+                        {t('tokens.generate_token.button')}
                       </Button>
                     </div>
                   </div>
-                )}
               </div>
               <Alert>
                 <InfoCircledIcon className="size-4" />
-                <AlertTitle>SCIM Endpoint URL</AlertTitle>
+                <AlertTitle>{t('scim_endpoint.title')}</AlertTitle>
                 <AlertDescription>
-                  Copy this URL and provide it to your identity provider or
-                  other SCIM client
+                  {t('scim_endpoint.description')}
                   <div className="mt-2 flex space-x-2">
                     <Input
                       className="font-mono"
@@ -286,7 +298,7 @@ export function ScimForm({ scimConfig, scimTokens }: Props) {
                         onClick={async () => {
                           await navigator.clipboard.writeText(SCIM_ENDPOINT_URL)
                           toast.success(
-                            "SCIM endpoint URL copied to clipboard."
+                            t('scim_endpoint.copied')
                           )
                         }}
                       />
@@ -296,7 +308,7 @@ export function ScimForm({ scimConfig, scimTokens }: Props) {
               </Alert>
             </CardContent>
             <CardFooter className="flex justify-end">
-              <SubmitButton>Update Configuration</SubmitButton>
+              <SubmitButton>{t('button')}</SubmitButton>
             </CardFooter>
           </form>
         )}
@@ -305,16 +317,15 @@ export function ScimForm({ scimConfig, scimTokens }: Props) {
       <Dialog open={showTokenDialog} onOpenChange={setShowTokenDialog}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle>SCIM Bearer Token</DialogTitle>
+            <DialogTitle>{t('dialog.title')}</DialogTitle>
             <DialogDescription>
-              Copy the token and save it in a secure location. This token will
-              not be shown again.
+              {t('dialog.description')}
             </DialogDescription>
           </DialogHeader>
           <div className="flex items-center space-x-2">
             <div className="grid flex-1 gap-2">
               <Label htmlFor="token" className="sr-only">
-                Token
+                {t('dialog.token')}
               </Label>
               <Input id="token" defaultValue={token} readOnly />
             </div>
@@ -324,7 +335,7 @@ export function ScimForm({ scimConfig, scimTokens }: Props) {
               variant="outline"
               onClick={async () => {
                 await navigator.clipboard.writeText(token)
-                toast.success("SCIM token copied to clipboard.")
+                toast.success(t('dialog.copied'))
               }}
             >
               <span className="sr-only">Copy</span>
@@ -334,7 +345,7 @@ export function ScimForm({ scimConfig, scimTokens }: Props) {
           <DialogFooter className="sm:justify-start">
             <DialogClose asChild>
               <Button type="button" variant="outline">
-                Close
+                {t('dialog.close')}
               </Button>
             </DialogClose>
           </DialogFooter>

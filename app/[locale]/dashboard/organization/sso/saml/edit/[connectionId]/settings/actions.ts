@@ -7,12 +7,17 @@ import { managementClient } from "@/lib/auth0"
 import { verifyDnsRecords } from "@/lib/domain-verification"
 import { withServerActionAuth } from "@/lib/with-server-action-auth"
 
+import { getTranslations } from 'next-intl/server';
+
 export const updateConnection = withServerActionAuth(
   async function updateConnection(
     connectionId: string,
     formData: FormData,
     session: SessionData
   ) {
+　　  // Get translation from messages
+　　  const t = await getTranslations('updateSamlConnection');
+
     const displayName = formData.get("display_name")
     const signInUrl = formData.get("sign_in_url")
     const signOutUrl = formData.get("sign_out_url") // optional
@@ -25,25 +30,25 @@ export const updateConnection = withServerActionAuth(
 
     if (!displayName || typeof displayName !== "string") {
       return {
-        error: "Connection name is required.",
+        error: t('no_name'),
       }
     }
 
     if (!signInUrl || typeof signInUrl !== "string") {
       return {
-        error: "Sign-in URL is required.",
+        error: t('no_signin_url'),
       }
     }
 
     if (!certificate || !(certificate instanceof File)) {
       return {
-        error: "Certificate is required.",
+        error: t('no_certificate'),
       }
     }
 
     if (!protocolBinding || typeof protocolBinding !== "string") {
       return {
-        error: "Protocol binding is required.",
+        error: t('no_protocol_binding'),
       }
     }
 
@@ -52,7 +57,7 @@ export const updateConnection = withServerActionAuth(
       typeof assignMembershipOnLogin !== "string"
     ) {
       return {
-        error: "Auto-membership is required.",
+        error: t('no_auto_membership'),
       }
     }
 
@@ -67,7 +72,7 @@ export const updateConnection = withServerActionAuth(
 
       if (!verified) {
         return {
-          error: `The domain ${domain} is not verified.`,
+          error: t('domain_error', {domain: domain}),
         }
       }
     }
@@ -86,7 +91,7 @@ export const updateConnection = withServerActionAuth(
 
     if (!enabledConnection) {
       return {
-        error: "Connection not found.",
+        error: t('connection_not_found'),
       }
     }
 
@@ -131,7 +136,7 @@ export const updateConnection = withServerActionAuth(
     } catch (error) {
       console.error("failed to update the SSO connection", error)
       return {
-        error: "Failed to update the SSO connection.",
+        error: t('failed_to_update'),
       }
     }
 

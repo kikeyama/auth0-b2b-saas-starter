@@ -66,6 +66,10 @@
     "org_slug_description": "This cannot be changed.",
     "button": "Save"
   },
+  "updateDisplayName": {
+    "no_display_name": "Display name is required.",
+    "failed_to_update": "Failed to update the organization's display name."
+  },
   "Members": {
     "title": "Members",
     "description": "Manage the members of the organization."
@@ -98,6 +102,23 @@
     "member": "Member",
     "button": "Send"
   },
+  "createInvitation": {
+    "no_email_address": "Email address is required.",
+    "role_error": "Role is required and must be either 'member' or 'admin'.",
+    "failed_to_create": "Failed to create invitation."
+  },
+  "revokeInvitation": {
+    "failed_to_revoke": "Failed to revoke invitation."
+  },
+  "removeMember": {
+    "cannot_remove_yourself": "You cannot remove yourself from an organization.",
+    "failed_to_remove": "Failed to remove member."
+  },
+  "updateRole": {
+    "cannot_update_your_own": "You cannot update your own role.",
+    "role_error": "Role is required and must be either 'member' or 'admin'.",
+    "failed_to_update": "Failed to update member's role."
+  },
   "SSO": {
     "title": "Single Sign-On",
     "description": "Configure SSO for your organization."
@@ -126,6 +147,10 @@
     "add": "Add Connection",
     "oidc": "OIDC",
     "saml": "SAML"
+  },
+  "verifyDomain": {
+    "no_domain": "Domain is required.",
+    "failed_to_validate": "Failed to validate the domain."
   },
   "CreateOidcConnection": {
     "back": "Back to connections"
@@ -191,6 +216,63 @@
     "connection_not_found": "Connection not found.",
     "failed_to_delete": "Failed to delete the SSO connection."
   },
+  "UpdateOidcConnectionForm": {
+    "title": "Update Connection Configuration",
+    "description": "Update the configuration for your OpenID Connect connection.",
+    "name": "Connection Name",
+    "identifier": "Identifier",
+    "discovery_url": "Discovery URL",
+    "type": {
+      "title": "Type",
+      "back_channel": {
+        "title": "Back Channel",
+        "description": "Uses <response_type>response_type=code</response_type>."
+      },
+      "front_channel": {
+        "title": "Front Channel",
+        "description": "Uses <response_mode>response_mode=form_post</response_mode> and <response_type>response_type=id_token</response_type>."
+      }
+    },
+    "client_id": "Client ID",
+    "client_secret": "Client Secret",
+    "scopes": {
+      "title": "Scopes",
+      "description": "A space-separated list of scopes. Must contain <openid>openid</openid>."
+    },
+    "domains": {
+      "title": "Domains",
+      "alert": "No domains have been added yet."
+    },
+    "callback_url": {
+      "title": "Callback URL",
+      "description": "You may need to configure the OIDC issuer with the following callback URL:",
+      "success": "Callback URL copied to clipboard."
+    },
+    "auto_membership": {
+      "title": "Auto-Membership",
+      "enable": {
+        "title": "Enable Auto-Membership",
+        "description": "All users logging in with this connection will be automatically added as members of this organization."
+      },
+      "disable": {
+        "title": "Disable Auto-Membership",
+        "description": "All users logging in with this connection will not be added as members to this organization."
+      }
+    },
+    "button": "Update Connection",
+    "success": "The connection has been updated."
+  },
+  "updateOidcConnection": {
+    "no_name": "Connection name is required.",
+    "no_discovery_url": "Discovery URL is required.",
+    "no_client_id": "Client ID is required.",
+    "no_type": "Type is required.",
+    "no_scopes": "Scope is required.",
+    "no_auto_membership": "Auto-membership is required.",
+    "domain_error": "The domain {domain} is not verified.",
+    "connection_not_found": "Connection not found.",
+    "failed_to_create": "Failed to update the SSO connection."
+  },
   "CreateSamlConnection": {
     "back": "Back to connections"
   },
@@ -246,6 +328,154 @@
     "no_connection_id": "Connection ID is required.",
     "connection_not_found": "Connection not found.",
     "failed_to_delete": "Failed to delete the SSO connection."
+  },
+  "EditSamlConnectionLayout": {
+    "back": "Back to connections",
+    "settings": "Settings",
+    "provisioning": "Provisioning"
+  },
+  "UpdateSamlConnectionForm": {
+    "title": "Update Connection Configuration",
+    "description": "Update the configuration for your SAML connection.",
+    "name": "Connection Name",
+    "identifier": "Identifier",
+    "sign_in_url": "Sign In URL",
+    "sign_out_url": "Sign Out URL",
+    "certificate": "X509 Signing Certificate",
+    "user_id_attribute": "User ID Attribute",
+    "protocol_binding": "Protocol Binding",
+    "http_redirect": "HTTP Redirect",
+    "http_post": "HTTP POST",
+    "domains": {
+      "title": "Domains",
+      "alert": "No domains have been added yet."
+    },
+    "sign_request": {
+      "title": "Sign Request",
+      "description": "The request will be signed with <rsa_sha256>RSA-SHA256</rsa_sha256>. <download>Download the certificate</download> to configure your identity provider to validate the request signature."
+    },
+    "post_back_url": {
+      "title": "Post-Back URL",
+      "description": "You will need to configure the SAML identity provider with the following post-back URL:",
+      "success": "Post-back URL copied to clipboard."
+    },
+    "auto_membership": {
+      "title": "Auto-Membership",
+      "enable": {
+        "title": "Enable Auto-Membership",
+        "description": "All users logging in with this connection will be automatically added as members of this organization."
+      },
+      "disable": {
+        "title": "Disable Auto-Membership",
+        "description": "All users logging in with this connection will not be added as members to this organization."
+      }
+    },
+    "button": "Update Connection",
+    "success": "The connection has been updated."
+  },
+  "updateSamlConnection": {
+    "no_name": "Connection name is required.",
+    "no_signin_url": "Sign-in URL is required.",
+    "no_certificate": "Certificate is required.",
+    "no_protocol_binding": "Protocol binding is required.",
+    "no_auto_membership": "Auto-membership is required.",
+    "domain_error": "The domain {domain} is not verified.",
+    "connection_not_found": "Connection not found.",
+    "failed_to_update": "Failed to update the SSO connection."
+  },
+  "EditOidcConnectionLayout": {
+    "back": "Back to connections",
+    "settings": "Settings",
+    "provisioning": "Provisioning"
+  },
+  "AddDomainDialog": {
+    "button": "Add Domain",
+    "title": "Add a Domain",
+    "description": "Add a verified domain so that your organization's end-users can be forwarded directly to this IdP to log in. <learnmore>Learn more</learnmore>.",
+    "domain": "Domain",
+    "verification": {
+      "title": "Verification",
+      "description": "Add the following TXT record to your DNS configuration",
+      "name": {
+        "title": "Name",
+        "copied": "TXT record name copied to clipboard."
+      },
+      "value": {
+        "title": "Value",
+        "copied": "TXT record value copied to clipboard."
+      },
+      "success": "Domain has been verified.",
+      "verified": "Verified",
+      "checking": "Checking...",
+      "check_again": "Check Again"
+    }
+  },
+  "ScimForm": {
+    "title": "Sync user profiles using SCIM",
+    "description": "Allow an identity provider or other SCIM client to sync user profiles to your organization using the SCIM 2.0 protocol.",
+    "enabled": "SCIM has been enabled.",
+    "disabled": "SCIM has been disabled.",
+    "success": "SCIM configuration updated successfully.",
+    "user_id_attribute": {
+      "title": "User ID Attribute",
+      "description": "The attribute that uniquely identifies a user"
+    },
+    "tokens": {
+      "title": "Tokens",
+      "table": {
+        "id": "ID",
+        "last_used_at": "Last Used At",
+        "created_at": "Created At",
+        "never": "Never",
+        "created_date": "{createdDate, date, ::yyyyMMMd}",
+        "delete_token": {
+          "title": "Delete token?",
+          "description": "Are you sure you would like to delete this token? This action cannot be undone.",
+          "cancel": "Cancel",
+          "submit": "Delete token",
+          "success": "The token has been deleted."
+        }
+      },
+      "no_tokens": "No tokens have been generated yet.",
+      "generate_token": {
+        "button": "Generate Token",
+        "success": "The token has been created successfully."
+      }
+    },
+    "scim_endpoint": {
+      "title": "SCIM Endpoint URL",
+      "description": "Copy this URL and provide it to your identity provider or other SCIM client.",
+      "copied": "SCIM endpoint URL copied to clipboard."
+    },
+    "button": "Update Configuration",
+    "dialog": {
+      "title": "SCIM Bearer Token",
+      "description": "Copy the token and save it in a secure location. This token will not be shown again.",
+      "token": "Token",
+      "copied": "SCIM token copied to clipboard.",
+      "close": "Close"
+    }
+  },
+  "createScimConfig": {
+    "connection_not_found": "Connection not found.",
+    "failed_to_create": "Failed to create a SCIM configuration."
+  },
+  "deleteScimConfig": {
+    "connection_not_found": "Connection not found.",
+    "failed_to_create": "Failed to delete a SCIM configuration."
+  },
+  "updateScimConfig": {
+    "no_user_id_attribute": "User ID attribute is required.",
+    "connection_not_found": "Connection not found.",
+    "failed_to_update": "Failed to update a SCIM configuration."
+  },
+  "createScimToken": {
+    "connection_not_found": "Connection not found.",
+    "failed_to_create": "Failed to create a SCIM token."
+  },
+  "deleteScimToken": {
+    "connection_not_found": "Connection not found.",
+    "failed_to_create": "Failed to delete a SCIM token."
   },
   "SecurityPolicies": {
     "title": "Security Policies",

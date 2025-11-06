@@ -6,13 +6,18 @@ import { SessionData } from "@auth0/nextjs-auth0/types"
 import { managementClient } from "@/lib/auth0"
 import { withServerActionAuth } from "@/lib/with-server-action-auth"
 
+import { getTranslations } from 'next-intl/server';
+
 export const updateDisplayName = withServerActionAuth(
   async function updateDisplayName(formData: FormData, session: SessionData) {
+    // Get translation from messages
+    const t = await getTranslations('updateDisplayName');
+
     const displayName = formData.get("display_name")
 
     if (!displayName || typeof displayName !== "string") {
       return {
-        error: "Display name is required.",
+        error: t('no_display_name'),
       }
     }
 
@@ -30,7 +35,7 @@ export const updateDisplayName = withServerActionAuth(
     } catch (error) {
       console.error("failed to update organization display name", error)
       return {
-        error: "Failed to update the organization's display name.",
+        error: t('failed_to_update'),
       }
     }
 

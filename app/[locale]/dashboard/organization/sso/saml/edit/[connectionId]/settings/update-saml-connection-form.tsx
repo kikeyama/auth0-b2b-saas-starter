@@ -32,6 +32,8 @@ import { SubmitButton } from "@/components/submit-button"
 import { AddDomainDialog } from "../../../../components/add-domain-dialog"
 import { updateConnection } from "./actions"
 
+import { useTranslations } from 'next-intl';
+
 const CALLBACK_URL = `https://${process.env.NEXT_PUBLIC_AUTH0_DOMAIN}/login/callback`
 
 export interface SamlConnection {
@@ -60,6 +62,9 @@ export function UpdateSamlConnectionForm({
   connection,
   domainVerificationToken,
 }: Props) {
+  // Get translation from messages
+  const t = useTranslations('UpdateSamlConnectionForm');
+
   const [domains, setDomains] = useState<string[]>(
     connection.options.domainAliases || []
   )
@@ -73,19 +78,19 @@ export function UpdateSamlConnectionForm({
           if (error) {
             toast.error(error)
           } else {
-            toast.success("The connection has been updated.")
+            toast.success(t('success'))
           }
         }}
       >
         <CardHeader>
-          <CardTitle>Update Connection Configuration</CardTitle>
+          <CardTitle>{t('title')}</CardTitle>
           <CardDescription>
-            Update the configuration for your SAML connection.
+            {t('description')}
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4">
           <div className="grid w-full items-center gap-2">
-            <Label htmlFor="display_name">Connection Name</Label>
+            <Label htmlFor="display_name">{t('name')}</Label>
             <Input
               id="display_name"
               name="display_name"
@@ -94,12 +99,12 @@ export function UpdateSamlConnectionForm({
               defaultValue={connection.displayName}
             />
             <p className="text-sm text-muted-foreground">
-              Identifier: <Code>{connection.name}</Code>
+              {t('identifier')}: <Code>{connection.name}</Code>
             </p>
           </div>
 
           <div className="grid w-full items-center gap-2">
-            <Label htmlFor="sign_in_url">Sign In URL</Label>
+            <Label htmlFor="sign_in_url">{t('sign_in_url')}</Label>
             <Input
               id="sign_in_url"
               name="sign_in_url"
@@ -110,7 +115,7 @@ export function UpdateSamlConnectionForm({
           </div>
 
           <div className="grid w-full items-center gap-2">
-            <Label htmlFor="sign_out_url">Sign Out URL</Label>
+            <Label htmlFor="sign_out_url">{t('sign_out_url')}</Label>
             <Input
               id="sign_out_url"
               name="sign_out_url"
@@ -121,7 +126,7 @@ export function UpdateSamlConnectionForm({
           </div>
 
           <div className="grid w-full items-center gap-2">
-            <Label htmlFor="certificate">X509 Signing Certificate</Label>
+            <Label htmlFor="certificate">{t('certificate')}</Label>
             <Input
               id="certificate"
               name="certificate"
@@ -131,7 +136,7 @@ export function UpdateSamlConnectionForm({
           </div>
 
           <div className="grid w-full items-center gap-2">
-            <Label htmlFor="user_id_attribute">User ID Attribute</Label>
+            <Label htmlFor="user_id_attribute">{t('user_id_attribute')}</Label>
             <Input
               id="user_id_attribute"
               name="user_id_attribute"
@@ -142,7 +147,7 @@ export function UpdateSamlConnectionForm({
           </div>
 
           <div className="grid w-full items-center gap-2">
-            <Label htmlFor="protocol_binding">Protocol Binding</Label>
+            <Label htmlFor="protocol_binding">{t('protocol_binding')}</Label>
             <Select
               name="protocol_binding"
               defaultValue={connection.options.protocolBinding}
@@ -152,17 +157,17 @@ export function UpdateSamlConnectionForm({
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect">
-                  HTTP Redirect
+                  {t('http_redirect')}
                 </SelectItem>
                 <SelectItem value="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST">
-                  HTTP POST
+                  {t('http_post')}
                 </SelectItem>
               </SelectContent>
             </Select>
           </div>
 
           <div className="grid w-full items-center gap-2">
-            <Label htmlFor="domains">Domains</Label>
+            <Label htmlFor="domains">{t('domains.title')}</Label>
             <Input
               id="domains"
               name="domains"
@@ -190,7 +195,7 @@ export function UpdateSamlConnectionForm({
               ))
             ) : (
               <div className="rounded-md border border-dashed p-4 text-sm text-muted-foreground">
-                <p>No domains have been added yet.</p>
+                <p>{t('domains.alert')}</p>
               </div>
             )}
             <div>
@@ -204,18 +209,20 @@ export function UpdateSamlConnectionForm({
 
           <div className="flex flex-row items-center justify-between rounded-lg border p-4">
             <div className="space-y-0.5">
-              <Label htmlFor="sign_request">Sign Request</Label>
+              <Label htmlFor="sign_request">{t('sign_request.title')}</Label>
               <p className="text-sm text-muted-foreground">
-                The request will be signed with <Code>RSA-SHA256</Code>.{" "}
-                <a
-                  className="underline underline-offset-4"
-                  href={`https://${process.env.NEXT_PUBLIC_AUTH0_DOMAIN}/pem?cert=connection`}
-                  target="_blank"
-                >
-                  Download the certificate
-                </a>{" "}
-                to configure your identity provider to validate the request
-                signature.
+                {t.rich('sign_request.description', {
+                  rsa_sha256: (chunks) => <Code>{chunks}</Code>,
+                  download: (chunks) => (
+                    <a
+                      className="underline underline-offset-4"
+                      href={`https://${process.env.NEXT_PUBLIC_AUTH0_DOMAIN}/pem?cert=connection`}
+                      target="_blank"
+                    >
+                      {chunks}
+                    </a>
+                  )
+                })}
               </p>
             </div>
             <Switch
@@ -227,10 +234,9 @@ export function UpdateSamlConnectionForm({
 
           <Alert>
             <InfoCircledIcon className="size-4" />
-            <AlertTitle>Post-Back URL</AlertTitle>
+            <AlertTitle>{t('post_back_url.title')}</AlertTitle>
             <AlertDescription>
-              You will need to configure the SAML identity provider with the
-              following post-back URL:
+              {t('post_back_url.description')}
               <div className="mt-2 flex space-x-2">
                 <Input className="font-mono" value={CALLBACK_URL} readOnly />
                 <Button size="icon" variant="outline" type="button">
@@ -238,7 +244,7 @@ export function UpdateSamlConnectionForm({
                     className="size-4"
                     onClick={async () => {
                       await navigator.clipboard.writeText(CALLBACK_URL)
-                      toast.success("Post-back URL copied to clipboard.")
+                      toast.success(t('post_back_url.success'))
                     }}
                   />
                 </Button>
@@ -249,7 +255,7 @@ export function UpdateSamlConnectionForm({
           <Separator />
 
           <div className="grid w-full items-center gap-2">
-            <Label htmlFor="assign_membership_on_login">Auto-Membership</Label>
+            <Label htmlFor="assign_membership_on_login">{t('auto_membership.title')}</Label>
             <RadioGroup
               id="assign_membership_on_login"
               name="assign_membership_on_login"
@@ -269,10 +275,9 @@ export function UpdateSamlConnectionForm({
                   className="flex h-full rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
                 >
                   <div className="space-y-1.5">
-                    <div>Enable Auto-Membership</div>
+                    <div>{t('auto_membership.enable.title')}</div>
                     <div className="leading-normal text-muted-foreground">
-                      All users logging in with this connection will be
-                      automatically added as members of this organization.
+                      {t('auto_membership.enable.description')}
                     </div>
                   </div>
                 </Label>
@@ -289,10 +294,9 @@ export function UpdateSamlConnectionForm({
                   className="flex h-full rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
                 >
                   <div className="space-y-1.5">
-                    <div>Disable Auto-Membership</div>
+                    <div>{t('auto_membership.disable.title')}</div>
                     <div className="leading-normal text-muted-foreground">
-                      All users logging in with this connection will not be
-                      added as members to this organization.
+                      {t('auto_membership.disable.description')}
                     </div>
                   </div>
                 </Label>
@@ -301,7 +305,7 @@ export function UpdateSamlConnectionForm({
           </div>
         </CardContent>
         <CardFooter className="flex justify-end">
-          <SubmitButton>Update Connection</SubmitButton>
+          <SubmitButton>{t('button')}</SubmitButton>
         </CardFooter>
       </form>
     </Card>
