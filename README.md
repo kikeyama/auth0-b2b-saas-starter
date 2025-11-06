@@ -120,7 +120,7 @@ This project uses the [Auth0 CLI](https://github.com/auth0/auth0-cli) to make se
 2. Log in by entering the following command and following the instructions to choose a specific tenant to authenticate with:
 
    ```shell
-   auth0 login --scopes "update:tenant_settings,create:connections,create:client_grants,create:email_templates,update:guardian_factors"
+   auth0 login --scopes "update:tenant_settings,create:connections,create:clients,create:client_grants,create:email_templates,update:guardian_factors,read:actions,update:actions,create:actions,update:triggers,create:roles,update:branding,update:prompts"
    ```
 
    This will take you through a flow that will securely retrieve a Management API token for your Auth0 tenant.

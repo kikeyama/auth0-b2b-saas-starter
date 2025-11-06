@@ -64,8 +64,8 @@ export function MembersList({ members }: Props) {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>User</TableHead>
-              <TableHead>Role</TableHead>
+              <TableHead>{t('user')}</TableHead>
+              <TableHead>{t('role')}</TableHead>
               <TableHead></TableHead>
             </TableRow>
           </TableHeader>

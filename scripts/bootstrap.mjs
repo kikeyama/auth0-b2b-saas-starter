@@ -141,6 +141,8 @@ try {
         "update:connections",
         "delete:connections",
         "create:connections",
+        "read:connections_options",
+        "update:connections_options",
         // Organizations
         "read:organizations_summary",
         "read:organizations",

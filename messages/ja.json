@@ -73,6 +73,8 @@
   "MembersList": {
     "title": "現在のメンバー",
     "description": "現在の組織のメンバー",
+    "user": "ユーザー",
+    "role": "ロール",
     "admin": "管理者",
     "member": "メンバー",
     "delete": "削除"

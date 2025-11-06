@@ -73,6 +73,8 @@
   "MembersList": {
     "title": "Current Members",
     "description": "The current organization members.",
+    "user": "User",
+    "role": "Role",
     "admin": "Admin",
     "member": "Member",
     "delete": "Delete"
