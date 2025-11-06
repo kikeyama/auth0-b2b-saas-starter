@@ -1,5 +1,6 @@
 import { Link } from "@/i18n/navigation"
 import { redirect } from "next/navigation"
+import { redirect as i18nRedirect } from "@/i18n/navigation"
 import { Auth0Provider } from "@auth0/nextjs-auth0"
 import { SettingsIcon } from "lucide-react"
 
@@ -33,7 +34,7 @@ export default async function DashboardLayout({
 
   // if the user does not belong to any organizations, redirect to onboarding
   if (!orgs.length) {
-    redirect("/welcome/create")
+    i18nRedirect("/welcome/create")
   }
 
   return (

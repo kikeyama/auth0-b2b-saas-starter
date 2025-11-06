@@ -1,4 +1,4 @@
-import Link from "next/link"
+import { Link } from "@/i18n/navigation"
 import { ArrowLeftIcon } from "@radix-ui/react-icons"
 
 import { appClient } from "@/lib/auth0"

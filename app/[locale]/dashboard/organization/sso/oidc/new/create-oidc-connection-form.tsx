@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { useRouter } from "next/navigation"
+import { useRouter } from "@/i18n/navigation"
 import { CopyIcon, InfoCircledIcon, TrashIcon } from "@radix-ui/react-icons"
 import slugify from "@sindresorhus/slugify"
 import { toast } from "sonner"

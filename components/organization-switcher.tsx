@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
+import { useRouter as i18nUseRouter } from "@/i18n/navigation"
 import {
   CaretSortIcon,
   CheckIcon,
@@ -49,6 +50,7 @@ export function OrganizationSwitcher({
 
   const [open, setOpen] = useState(false)
   const router = useRouter()
+  const i18nRouter = i18nUseRouter()
 
   const organization = organizations.find((org) => org.id === currentOrgId)!
 
@@ -122,7 +124,7 @@ export function OrganizationSwitcher({
             <CommandGroup>
               <CommandItem
                 onSelect={() => {
-                  router.push("/welcome/create")
+                  i18nRouter.push("/welcome/create")
                   setOpen(false)
                 }}
                 className="cursor-pointer"

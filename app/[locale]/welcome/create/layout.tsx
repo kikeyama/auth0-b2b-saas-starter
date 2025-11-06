@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation"
+import { redirect as i18nRedirect } from "@/i18n/navigation"
 import { Auth0Provider } from "@auth0/nextjs-auth0"
 
 import { onboardingClient } from "@/lib/auth0"
@@ -26,7 +27,7 @@ export default async function CreateLayout({
 
   // user must verify their e-mail first to create your account
   if (!user.email_verified) {
-    redirect("/welcome/verify")
+    i18nRedirect("/welcome/verify")
   }
 
   return (

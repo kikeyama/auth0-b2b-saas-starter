@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation"
+import { redirect as i18nRedirect } from "@/i18n/navigation"
 
 import { appClient, managementClient } from "@/lib/auth0"
 import { getOrCreateDomainVerificationToken } from "@/lib/domain-verification"
@@ -25,7 +26,7 @@ export default async function UpdateSamlConnection({
     })
 
   if (!enabledConnection) {
-    redirect("/dashboard/organization/sso")
+    i18nRedirect("/dashboard/organization/sso")
   }
 
   const [domainVerificationToken, { data: connection }] = await Promise.all([

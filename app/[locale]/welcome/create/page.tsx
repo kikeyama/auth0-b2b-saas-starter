@@ -1,4 +1,4 @@
-import Link from "next/link"
+import { Link } from "@/i18n/navigation"
 
 import { Auth0Logo } from "@/components/auth0-logo"
 
