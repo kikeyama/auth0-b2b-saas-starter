@@ -262,7 +262,7 @@
     "button": "接続を更新",
     "success": "接続が更新されました。"
   },
-  "createOidcConnection": {
+  "updateOidcConnection": {
     "no_name": "接続名は必須です。",
     "no_discovery_url": "ディスカバリーURLは必須です。",
     "no_client_id": "クライアントIDは必須です。",
@@ -373,7 +373,7 @@
     "button": "接続を更新",
     "success": "接続が更新されました。"
   },
-  "createSamlConnection": {
+  "updateSamlConnection": {
     "no_name": "接続名は必須です。",
     "no_signin_url": "サインインURLは必須です。",
     "no_certificate": "証明書は必須です。",
