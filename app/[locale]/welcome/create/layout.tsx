@@ -27,7 +27,7 @@ export default async function CreateLayout({
 
   // user must verify their e-mail first to create your account
   if (!user.email_verified) {
-    i18nRedirect("/welcome/verify")
+    redirect("/welcome/verify")
   }
 
   return (

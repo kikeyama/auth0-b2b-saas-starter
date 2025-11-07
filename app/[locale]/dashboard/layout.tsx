@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button"
 import { Auth0Logo } from "@/components/auth0-logo"
 import { ModeToggle } from "@/components/mode-toggle"
 import { OrganizationSwitcher } from "@/components/organization-switcher"
+import { LanguageSwitcher } from "@/components/language-switcher"
 import { UserNav } from "@/components/user-nav"
 
 import { getTranslations } from 'next-intl/server';
@@ -34,7 +35,7 @@ export default async function DashboardLayout({
 
   // if the user does not belong to any organizations, redirect to onboarding
   if (!orgs.length) {
-    i18nRedirect("/welcome/create")
+    redirect("/welcome/create")
   }
 
   return (
@@ -99,6 +100,7 @@ export default async function DashboardLayout({
           </div>
 
           <div className="items-center gap-x-2">
+            <LanguageSwitcher />
             <ModeToggle />
           </div>
         </div>
