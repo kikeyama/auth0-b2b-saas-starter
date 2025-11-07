@@ -8,7 +8,7 @@ import {
   TrashIcon,
   UpdateIcon,
 } from "@radix-ui/react-icons"
-import { format, formatDistance } from "date-fns"
+//import { format, formatDistance } from "date-fns"
 import { toast } from "sonner"
 
 import { cn } from "@/lib/utils"
@@ -176,7 +176,7 @@ export function ScimForm({ scimConfig, scimTokens }: Props) {
                             <TableCell>
                               {token.lastUsedAt
 //                                ? i18nFormat.relativeTime(token.lastUsedAt, useNow())
-                                ? i18nFormat.relativeTime(token.lastUsedAt, new Date())
+                                ? i18nFormat.relativeTime(new Date(token.lastUsedAt), new Date())
 //                                ? formatDistance(token.lastUsedAt, new Date())
                                 : t('tokens.table.never')}
                             </TableCell>

@@ -1,5 +1,4 @@
 import { redirect } from "next/navigation"
-import { redirect as i18nRedirect } from "@/i18n/navigation"
 import { Auth0Provider } from "@auth0/nextjs-auth0"
 
 import { onboardingClient } from "@/lib/auth0"

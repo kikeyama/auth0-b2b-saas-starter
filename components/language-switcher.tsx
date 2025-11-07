@@ -27,10 +27,10 @@ export function LanguageSwitcher() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => router.push(`/en${pathname}`, { locale: 'en' })}>
+        <DropdownMenuItem onClick={() => router.push(`/en${pathname}`)}>
           English
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => router.push(`/ja${pathname}`, { locale: 'ja' })}>
+        <DropdownMenuItem onClick={() => router.push(`/ja${pathname}`)}>
           日本語
         </DropdownMenuItem>
       </DropdownMenuContent>

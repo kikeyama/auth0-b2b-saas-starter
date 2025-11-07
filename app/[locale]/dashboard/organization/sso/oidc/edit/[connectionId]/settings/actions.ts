@@ -7,12 +7,17 @@ import { managementClient } from "@/lib/auth0"
 import { verifyDnsRecords } from "@/lib/domain-verification"
 import { withServerActionAuth } from "@/lib/with-server-action-auth"
 
+import { getTranslations } from 'next-intl/server';
+
 export const updateConnection = withServerActionAuth(
   async function updateConnection(
     connectionId: string,
     formData: FormData,
     session: SessionData
   ) {
+　　  // Get translation from messages
+　　  const t = await getTranslations('updateSamlConnection');
+
     const displayName = formData.get("display_name")
     const discoveryUrl = formData.get("discovery_url")
     const clientId = formData.get("client_id")

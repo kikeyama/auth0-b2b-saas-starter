@@ -6,23 +6,27 @@ import {getTranslations} from 'next-intl/server';
 
 //export default appClient.withPageAuthRequired(
 //  async function Home({params}) {
-  export default async function Home({params}) {
-//    const {locale} = use(params);
-    const {locale} = await params;
+export default async function Home({
+  params
+}: Readonly<{
+  params: Promise<{locale: string}>
+}>) {
+//  const {locale} = use(params);
+  const {locale} = await params;
 
-    // Enable static rendering
-    setRequestLocale(locale);
+  // Enable static rendering
+  setRequestLocale(locale);
 
-    // Once the request locale is set, you
-    // can call hooks from `next-intl`
-//    const t = useTranslations('home');
-    const t = await getTranslations('sample');  // async
+  // Once the request locale is set, you
+  // can call hooks from `next-intl`
+//  const t = useTranslations('home');
+  const t = await getTranslations('sample');  // async
 
-    return (
-      <div>
-        <h1>{t('title')}</h1>
-        <p>{t('description')}</p>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <h1>{t('title')}</h1>
+      <p>{t('description')}</p>
+    </div>
+  );
+}
 //);

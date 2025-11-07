@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation"
 import { redirect as i18nRedirect } from "@/i18n/navigation"
+import { getLocale } from 'next-intl/server';
 
 import { appClient, managementClient } from "@/lib/auth0"
 import { getOrCreateDomainVerificationToken } from "@/lib/domain-verification"
@@ -12,6 +13,7 @@ export default async function UpdateSamlConnection({
   params: Promise<{ connectionId: string }>
 }) {
   const session = await appClient.getSession()
+  const locale = await getLocale()
 
   if (!session) {
     return redirect("/auth/login")
@@ -26,7 +28,7 @@ export default async function UpdateSamlConnection({
     })
 
   if (!enabledConnection) {
-    i18nRedirect("/dashboard/organization/sso")
+    i18nRedirect({ href: "/dashboard/organization/sso", locale })
   }
 
   const [domainVerificationToken, { data: connection }] = await Promise.all([

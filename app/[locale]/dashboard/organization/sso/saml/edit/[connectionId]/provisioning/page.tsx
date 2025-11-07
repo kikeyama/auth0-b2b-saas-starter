@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation"
 import { redirect as i18nRedirect } from "@/i18n/navigation"
+import { getLocale } from 'next-intl/server';
 
 import { appClient, managementClient } from "@/lib/auth0"
 
@@ -11,6 +12,7 @@ export default async function Provisioning({
   params: Promise<{ connectionId: string }>
 }) {
   const session = await appClient.getSession()
+  const locale = await getLocale()
 
   if (!session) {
     return redirect("/auth/login")
@@ -25,7 +27,7 @@ export default async function Provisioning({
     })
 
   if (!enabledConnection) {
-    i18nRedirect("/dashboard/organization/sso")
+    i18nRedirect({ href: "/dashboard/organization/sso", locale })
   }
 
   let scimConfig

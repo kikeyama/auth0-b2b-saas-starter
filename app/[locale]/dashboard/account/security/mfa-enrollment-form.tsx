@@ -34,7 +34,7 @@ interface IPopupWindow {
   scrollbars: boolean
 }
 
-const getFactorsMeta = ({ t, f }) => {
+const getFactorsMeta = ({ t, f }: { t: any, f: string }) => {
 /*
   const factorMeta: {
     [key: string]: any
@@ -149,7 +149,7 @@ export function MFAEnrollmentForm({ factors }: MFAEnrollmentProps) {
             });
 
             return (
-              <div className="flex flex-col gap-6" key={`${meta.name}-${idx}`}>
+              <div className="flex flex-col gap-6" key={`${factor.name}-${idx}`}>
                 {idx > 0 && <Separator />}
                 <div
                   key={factor.name}

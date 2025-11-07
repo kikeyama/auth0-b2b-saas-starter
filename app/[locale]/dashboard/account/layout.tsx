@@ -2,7 +2,7 @@ import { SidebarNav } from "@/components/sidebar-nav"
 
 import { getTranslations } from 'next-intl/server';
 
-const getSidebarNavItems = (t) => {
+const getSidebarNavItems = (t: any) => {
   return (
     [
       {
