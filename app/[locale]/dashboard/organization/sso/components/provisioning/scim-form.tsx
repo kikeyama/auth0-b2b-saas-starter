@@ -175,7 +175,8 @@ export function ScimForm({ scimConfig, scimTokens }: Props) {
                             </TableCell>
                             <TableCell>
                               {token.lastUsedAt
-                                ? i18nFormat.relativeTime(token.lastUsedAt, useNow())
+//                                ? i18nFormat.relativeTime(token.lastUsedAt, useNow())
+                                ? i18nFormat.relativeTime(token.lastUsedAt, new Date())
 //                                ? formatDistance(token.lastUsedAt, new Date())
                                 : t('tokens.table.never')}
                             </TableCell>

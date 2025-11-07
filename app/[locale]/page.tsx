@@ -1,4 +1,4 @@
-import { Link } from "@/i18n/navigation"
+import Link from "next/link"
 
 import { appClient } from "@/lib/auth0"
 import { cn } from "@/lib/utils"
@@ -29,7 +29,7 @@ export default async function Home({
   return (
     <div className="container relative sm:grid h-screen flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
       {session ? (
-        <a
+        <Link
           href="/auth/logout"
           className={cn(
             buttonVariants({ variant: "ghost" }),
@@ -37,16 +37,18 @@ export default async function Home({
           )}
         >
           <SubmitButton>{t('logout')}</SubmitButton>
-        </a>
+        </Link>
       ) : (
         <div
           className="absolute right-4 top-4 md:right-8 md:top-8"
-        ><span className="text-sm">{t('joined')}</span> <a
-          className="text-sm underline"
-          href="/auth/login?returnTo=/dashboard"
         >
-          <SubmitButton>{t('login')}</SubmitButton>
-        </a>
+          <span className="text-sm">{t('joined')}</span>
+          <Link
+            className="text-sm underline"
+            href="/auth/login?returnTo=/dashboard"
+          >
+            <SubmitButton>{t('login')}</SubmitButton>
+          </Link>
         </div>
       )}
 

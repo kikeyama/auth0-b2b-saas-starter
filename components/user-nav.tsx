@@ -1,5 +1,6 @@
 import Image from "next/image"
-import { Link } from "@/i18n/navigation"
+//import { Link } from "@/i18n/navigation"
+import Link from "next/link"
 
 import { appClient } from "@/lib/auth0"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -57,7 +58,7 @@ export async function UserNav() {
           <Link href="/dashboard/account/profile">{t('profile')}</Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <a href="/auth/logout">{t('logout')}</a>
+          <Link href="/auth/logout">{t('logout')}</Link>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

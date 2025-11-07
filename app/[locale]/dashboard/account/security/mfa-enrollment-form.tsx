@@ -34,8 +34,9 @@ interface IPopupWindow {
   scrollbars: boolean
 }
 
-const getFactorsMeta = ({ t, factor }) => {
-  const factorMfa: {
+const getFactorsMeta = ({ t, f }) => {
+/*
+  const factorMeta: {
     [key: string]: any
   } = {
     sms: {
@@ -71,7 +72,13 @@ const getFactorsMeta = ({ t, factor }) => {
       description: t('factors.recovery_code.description'),
     },
   }
-  return (factorMfa[factor]);
+  return (factorMeta[f]);
+*/
+  const factor = f.replace('-', '_')
+  return ({
+    title: t(`factors.${factor}.title`),
+    description: t(`factors.${factor}.description`),
+  });
 }
 
 function openPopupWindow(popupOptions: IPopupWindow): Window | null {
@@ -138,7 +145,7 @@ export function MFAEnrollmentForm({ factors }: MFAEnrollmentProps) {
           .map((factor: any, idx: number) => {
             const meta = getFactorsMeta({
               t: t,
-              factor: factor.name
+              f: factor.name
             });
 
             return (
