@@ -64,7 +64,8 @@
     "org_name": "表示名",
     "org_slug": "識別子",
     "org_slug_description": "変更できません。",
-    "button": "保存"
+    "button": "保存",
+    "success": "組織の表示名が更新されました。"
   },
   "updateDisplayName": {
     "no_display_name": "表示名は必須です。",
@@ -79,9 +80,15 @@
     "description": "現在の組織のメンバー",
     "user": "ユーザー",
     "role": "ロール",
+    "select": {
+      "success": "メンバーのロールが更新されました。"
+    },
     "admin": "管理者",
     "member": "メンバー",
-    "delete": "削除"
+    "delete": {
+      "button": "削除",
+      "success": "メンバーが削除されました: {email}"
+    }
   },
   "InvitationsList": {
     "title": "保留中の招待",
@@ -90,8 +97,14 @@
     "role": "ロール",
     "invited_by": "招待者",
     "user_role": "{user_role, select, admin {管理者} member {メンバー} other {不明}}",
-    "copy_link": "招待リンクをコピー",
-    "delete": "削除"
+    "copy": {
+      "copy_link": "招待リンクをコピー",
+      "success": "招待リンクがクリップボードにコピーされました。"
+    },
+    "delete": {
+      "button": "削除",
+      "success": "招待が取り消されました: {email}"
+    }
   },
   "CreateInvitationForm": {
     "title": "チームメンバーを招待",
@@ -100,7 +113,8 @@
     "role": "ロール",
     "admin": "管理者",
     "member": "メンバー",
-    "button": "送信"
+    "button": "送信",
+    "success": "{email} に招待が送信されました。"
   },
   "createInvitation": {
     "no_email_address": "メールアドレスは必須です。",

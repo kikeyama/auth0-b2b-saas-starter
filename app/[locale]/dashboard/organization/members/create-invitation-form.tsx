@@ -42,7 +42,7 @@ export function CreateInvitationForm() {
           if (error) {
             toast.error(error)
           } else {
-            toast.success(`Invitation sent to ${formData.get("email")}`)
+            toast.success(t('success', {email: formData.get("email")}))
             ref.current?.reset()
           }
         }}

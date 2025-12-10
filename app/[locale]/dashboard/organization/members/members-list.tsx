@@ -99,7 +99,7 @@ export function MembersList({ members }: Props) {
                         return toast.error(error)
                       }
 
-                      toast.success("The member's role has been updated.")
+                      toast.success(t('select.success'))
                     }}
                   >
                     <SelectTrigger className="w-[160px]">
@@ -129,11 +129,11 @@ export function MembersList({ members }: Props) {
                             return toast.error(error)
                           }
 
-                          toast.success(`Removed member: ${member.email}`)
+                          toast.success(t('delete.success', {email: member.email}))
                         }}
                       >
                         <TrashIcon className="mr-1 size-4" />
-                        {t('delete')}
+                        {t('delete.button')}
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>

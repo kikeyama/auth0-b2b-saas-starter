@@ -64,7 +64,8 @@
     "org_name": "Display Name",
     "org_slug": "Slug",
     "org_slug_description": "This cannot be changed.",
-    "button": "Save"
+    "button": "Save",
+    "success": "The organization's display name has been updated."
   },
   "updateDisplayName": {
     "no_display_name": "Display name is required.",
@@ -79,9 +80,15 @@
     "description": "The current organization members.",
     "user": "User",
     "role": "Role",
+    "select": {
+      "success": "The member's role has been updated."
+    },
     "admin": "Admin",
     "member": "Member",
-    "delete": "Delete"
+    "delete": {
+      "button": "Delete",
+      "success": "Removed member: {email}"
+    }
   },
   "InvitationsList": {
     "title": "Pending Invitations",
@@ -90,8 +97,14 @@
     "role": "Role",
     "invited_by": "Invited By",
     "user_role": "{user_role, select, admin {Admin} member {Member} other {Unknown}}",
-    "copy_link": "Copy invitation link",
-    "delete": "Delete"
+    "copy": {
+      "copy_link": "Copy invitation link",
+      "success": "Invitation link copied to clipboard."
+    },
+    "delete": {
+      "button": "Delete",
+      "success": "Invitation has been revoked for: {email}"
+    }
   },
   "CreateInvitationForm": {
     "title": "Invite team members",
@@ -100,7 +113,8 @@
     "role": "Role",
     "admin": "Admin",
     "member": "Member",
-    "button": "Send"
+    "button": "Send",
+    "success": "Invitation sent to {email}"
   },
   "createInvitation": {
     "no_email_address": "Email address is required.",

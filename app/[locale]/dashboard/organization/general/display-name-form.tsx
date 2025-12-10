@@ -39,7 +39,7 @@ export function DisplayNameForm({ organization }: Props) {
           if (error) {
             toast.error(error)
           } else {
-            toast.success("The organization's display name has been updated.")
+            toast.success(t('success'))
           }
         }}
       >

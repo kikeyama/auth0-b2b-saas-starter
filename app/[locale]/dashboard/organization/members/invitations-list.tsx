@@ -89,11 +89,11 @@ export function InvitationsList({ invitations }: Props) {
                       <DropdownMenuItem
                         onSelect={async () => {
                           await navigator.clipboard.writeText(invitation.url)
-                          toast.success("Invitation link copied to clipboard.")
+                          toast.success(t('copy.success'))
                         }}
                       >
                         <CopyIcon className="mr-1 size-4" />
-                        {t('copy_link')}
+                        {t('copy.copy_link')}
                       </DropdownMenuItem>
                       <DropdownMenuItem
                         className="text-destructive"
@@ -106,12 +106,12 @@ export function InvitationsList({ invitations }: Props) {
                           }
 
                           toast.success(
-                            `Invitation has been revoked for: ${invitation.invitee.email}`
+                            t('delete.success', {email: invitation.invitee.email})
                           )
                         }}
                       >
                         <TrashIcon className="mr-1 size-4" />
-                        {t('delete')}
+                        {t('delete.button')}
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
