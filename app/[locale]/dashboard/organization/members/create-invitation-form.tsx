@@ -38,11 +38,12 @@ export function CreateInvitationForm() {
         ref={ref}
         action={async (formData: FormData) => {
           const { error } = await createInvitation(formData)
+          const email: string = formData.get('email') as string
 
           if (error) {
             toast.error(error)
           } else {
-            toast.success(t('success', {email: formData.get("email")}))
+            toast.success(t('success', {email: email}))
             ref.current?.reset()
           }
         }}
